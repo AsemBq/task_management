@@ -23,12 +23,14 @@ export default function CustomForm({
         name={firstName}
         placeholder={firstPlaceHolder}
         type={firstType}
+        icon={firstIcon}
       />
       <TextInput
         className={`custom-form__label ${secondClassName}`}
         name={secondName}
         placeholder={secondPlaceHolder}
         type={secondType}
+        icon={SecondIcon}
       />
       <SubmitButton text={buttonText} />
     </form>
