@@ -1,4 +1,3 @@
-
 /*@font-face {*/
 /*    font-family: "Roboto";*/
 /*    src: url(./assets/font/Roboto-Medium.ttf);*/
@@ -13,7 +12,7 @@ li{
     display: inline-block;
 }
 
-.TaskList1{
+.TasksList{
     width: 312px;
     height: 543px;
     border-radius: 25px;
@@ -23,40 +22,60 @@ li{
     align-items: center;
     justify-content: space-between;
 }
-.TaskList1 .box-tittle{
+.TasksList .box-tittle{
     margin-top: 24px;
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.TaskList1 .top-left-icon{
+.TasksList .top-left-icon{
     position: absolute;
     left: -50px;
     cursor: pointer;
 }
 
-.TaskList1 .box-tittle h1{
+.TasksList .top-right-icon{
+    position: absolute;
+    right: -60px;
+}
+
+.TasksList .box-tittle h1{
     font-size: 24px;
     text-align: center;
 }
 
-.TaskList1 .box-body{
+.TasksList.TasksList  .box-body{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: -30px;
+    margin-bottom: 22px;
 }
 
-.TaskList1 .tasks{
+.TasksList .filter{
+    width: 87%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+}
+.TasksList .filter-icon path {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+;
+}
+
+.TasksList .tasks{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 59px;
 }
 
-.TaskList1 .tasks li:not(:last-child) {
+.TasksList .tasks li:not(:last-child) {
     width: 85%;
     display: flex;
     justify-content: space-between;
@@ -65,7 +84,7 @@ li{
     border-bottom: 1px solid #49454F;
 }
 
-.TaskList1 .tasks li:last-child{
+.TasksList .tasks li:last-child{
     width: 85%;
     display: flex;
     justify-content: space-between;
@@ -73,7 +92,7 @@ li{
     padding: 8px 0;
 }
 
-.TaskList1 .circle{
+.TasksList .circle{
     display: inline-block;
     vertical-align: middle;
     width: 40px;
@@ -84,7 +103,7 @@ li{
     background-color: #4f378b;
     margin-right: 16px;
 }
-.TaskList1 input[type='checkbox']{
+.TasksList input[type='checkbox']{
     width: 18px;
     height: 18px;
     color: #4f378b;
@@ -93,45 +112,13 @@ li{
 }
 
 
-.TaskList1 .Pagination{
-    display: flex;
-    align-items: center;
-}
-.TaskList1 .Pagination span{
-    cursor: pointer;
-}
-
-.TaskList1 .pag-number{
-    margin: 8px;
-    line-height: 30px;
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.TaskList1 .pag-numbers .active{
-    margin: 0;
-    width: 30px;
-    height: 30px;
-    color:#4A4458 ;
-    background-color: #D0BCFF ;
-    border-radius: 50%;
-}
-
-.TaskList1 .box-bottom{
+.TasksList .box-button{
     width: 80%;
-    margin-bottom: 76px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 50px
 
 }
-.box-button{
-    margin-top: 10px;
-    width: 90%;
-}
 
-.TaskList1 .button{
+.TasksList .button{
     width: 100%;
     background-color: transparent;
     border: 1px solid #938F99;
@@ -140,16 +127,14 @@ li{
     cursor: pointer;
 }
 
-.TaskList1 button .text {
+.TasksList .button .text {
     font-size: 14px;
     color: #D0BCFF;
     font-weight: 500;
 }
 
-.TaskList1 .button .plus-icon {
-    margin-right: 8px;
+.TasksList .button .plus-icon {
+    margin-right: 5px;
     vertical-align: center;
     display: inline-block;
 }
-
-
