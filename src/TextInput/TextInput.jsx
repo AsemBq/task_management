@@ -5,6 +5,8 @@ export default function TextInput({
   name,
   placeholder,
   inputType = 'text',
+  icon,
+  right,
 }) {
   return (
     <div className="_text-input__form-group">
@@ -14,6 +16,9 @@ export default function TextInput({
         className="_text-input__input"
         placeholder={placeholder}
       />
+      <div className="_text-input__icon" style={{ right }}>
+        {icon}
+      </div>
     </div>
   );
 }

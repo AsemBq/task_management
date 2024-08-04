@@ -3,6 +3,7 @@
   border-radius: 4px 4px 0px 0px;
   width: 238px;
   height: 56px;
+  position: relative;
 }
 
 ._text-input__label {
@@ -38,4 +39,11 @@
 ._text-input__input:focus {
   outline: none;
   border: none;
+}
+
+._text-input__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5rem;
 }
