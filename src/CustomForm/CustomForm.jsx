@@ -9,11 +9,13 @@ export default function CustomForm({
   firstPlaceHolder = 'Placeholder',
   firstType = 'text',
   firstIcon,
+  firstRight,
   secondClassName,
   secondName,
   secondPlaceHolder = 'Placeholder',
   secondType = 'text',
   SecondIcon,
+  secondRight,
   buttonText,
 }) {
   return (
@@ -24,6 +26,7 @@ export default function CustomForm({
         placeholder={firstPlaceHolder}
         type={firstType}
         icon={firstIcon}
+        right={firstRight}
       />
       <TextInput
         className={`custom-form__label ${secondClassName}`}
@@ -31,6 +34,7 @@ export default function CustomForm({
         placeholder={secondPlaceHolder}
         type={secondType}
         icon={SecondIcon}
+        right={secondRight}
       />
       <SubmitButton text={buttonText} />
     </form>
