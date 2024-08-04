@@ -1,8 +1,14 @@
 import './App.css';
 import Wrapper from './Wrapper';
+// import TaskList from './task-list.jsx'
 
 function App() {
-  return <Wrapper />;
+    return (
+        <>
+            <Wrapper />
+            {/*<TaskList/>*/}
+        </>
+    )
 }
 
 export default App;
