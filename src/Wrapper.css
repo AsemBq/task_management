@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100%;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 500px;
+  grid-template-rows: repeat(6, auto);
+  justify-content: center;
+  gap: 3rem;
+}
+
+.wrapper__item {
+  background-color: #2b2930;
+  color: white;
+  width: 312px;
+  height: 543px;
+  align-self: center;
+  text-align: center;
+  margin-inline: auto;
+  border-radius: 22px;
+}
+
+.wrapper__item:first-child {
+  margin-top: 3rem;
+}
+
+.wrapper__item:last-child {
+  margin-bottom: 3rem;
+}
