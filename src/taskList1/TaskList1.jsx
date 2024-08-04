@@ -1,5 +1,5 @@
-import './task-list.css'
-const TaskList=({className})=>{
+import './TaskList1.css'
+const TaskList1=({className})=>{
     return (
         <div className={className}>
 
@@ -68,4 +68,4 @@ const TaskList=({className})=>{
     )
 }
 
-export default TaskList;
+export default TaskList1;
