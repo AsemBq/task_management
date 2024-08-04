@@ -13,7 +13,7 @@ li{
     display: inline-block;
 }
 
-.Box{
+.TaskList1{
     width: 312px;
     height: 543px;
     border-radius: 25px;
@@ -21,47 +21,42 @@ li{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
-.box-tittle{
-    margin-top: 21px;
-    margin-bottom: 82px;
+.TaskList1 .box-tittle{
+    margin-top: 24px;
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.top-left-icon{
+.TaskList1 .top-left-icon{
     position: absolute;
     left: -50px;
+    cursor: pointer;
 }
 
-.top-right-icon{
-    position: absolute;
-    right: -60px;
-}
-
-.box-tittle h1{
+.TaskList1 .box-tittle h1{
     font-size: 24px;
     text-align: center;
 }
 
-.box-body{
+.TaskList1 .box-body{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: -30px;
 }
 
-.tasks{
+.TaskList1 .tasks{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 59px;
 }
 
-.tasks li:not(:last-child) {
+.TaskList1 .tasks li:not(:last-child) {
     width: 85%;
     display: flex;
     justify-content: space-between;
@@ -70,7 +65,7 @@ li{
     border-bottom: 1px solid #49454F;
 }
 
-.tasks li:last-child{
+.TaskList1 .tasks li:last-child{
     width: 85%;
     display: flex;
     justify-content: space-between;
@@ -78,7 +73,7 @@ li{
     padding: 8px 0;
 }
 
-.circle{
+.TaskList1 .circle{
     display: inline-block;
     vertical-align: middle;
     width: 40px;
@@ -89,64 +84,72 @@ li{
     background-color: #4f378b;
     margin-right: 16px;
 }
-input[type='checkbox']{
+.TaskList1 input[type='checkbox']{
     width: 18px;
     height: 18px;
     color: #4f378b;
     accent-color: #d0bcff;
+    cursor: pointer;
 }
 
 
-.Pagination{
+.TaskList1 .Pagination{
     display: flex;
     align-items: center;
 }
-
-.pag-number{
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    vertical-align: center;
-    font-size: 12px;
-    text-align: center;
+.TaskList1 .Pagination span{
+    cursor: pointer;
 }
 
-.pag-numbers .active{
+.TaskList1 .pag-number{
+    margin: 8px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.TaskList1 .pag-numbers .active{
+    margin: 0;
+    width: 30px;
+    height: 30px;
     color:#4A4458 ;
     background-color: #D0BCFF ;
     border-radius: 50%;
 }
 
-.box-button{
+.TaskList1 .box-bottom{
     width: 80%;
+    margin-bottom: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
+.box-button{
+    margin-top: 10px;
+    width: 90%;
+}
 
-.button{
+.TaskList1 .button{
     width: 100%;
     background-color: transparent;
     border: 1px solid #938F99;
     border-radius: 25px;
     padding: 10px 24px;
+    cursor: pointer;
 }
 
-.button .text {
+.TaskList1 button .text {
     font-size: 14px;
     color: #D0BCFF;
     font-weight: 500;
 }
 
-.button .plus-icon {
-    margin-right: 5px;
+.TaskList1 .button .plus-icon {
+    margin-right: 8px;
     vertical-align: center;
     display: inline-block;
 }
 
-/* Edit task style */
-
-input[type=text] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
 

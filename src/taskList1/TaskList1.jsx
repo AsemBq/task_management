@@ -4,7 +4,7 @@ const TaskList1=({className})=>{
         <div className={className}>
 
             <div className="box-tittle">
-                    <span className='exit-icon'><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    <span className='top-left-icon'><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M17 8L15.59 9.41L17.17 11H9V13H17.17L15.59 14.58L17 16L21 12L17 8ZM5 5H12V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H12V19H5V5Z"
@@ -31,6 +31,8 @@ const TaskList1=({className})=>{
                         <input type="checkbox"/></li>
 
                 </ul>
+            </div>
+            <div className={'box-bottom'}>
                 <div className={'Pagination'}>
                     <span className='lef-arrow'> <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
                                                       xmlns="http://www.w3.org/2000/svg">
@@ -53,15 +55,15 @@ const TaskList1=({className})=>{
     fill="#D0BCFF"/>
 </svg></span>
                 </div>
-            </div>
-            <div className={'box-button'}>
-                <button className={'button'}>
+                <div className={'box-button'}>
+                    <button className={'button'}>
                         <span className='plus-icon'><svg width="13" height="12" viewBox="0 0 13 12" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
 <path d="M12.5 6.75H7.25V12H5.75V6.75H0.5V5.25H5.75V0H7.25V5.25H12.5V6.75Z" fill="#D0BCFF"/>
 </svg></span>
-                    <span className={'text'}>Task</span>
-                </button>
+                        <span className={'text'}>Task</span>
+                    </button>
+                </div>
             </div>
 
         </div>
