@@ -1,0 +1,41 @@
+._text-input__form-group {
+  background-color: #36343b;
+  border-radius: 4px 4px 0px 0px;
+  width: 238px;
+  height: 56px;
+}
+
+._text-input__label {
+  display: block;
+  text-align: left;
+  margin-left: 1.2em;
+  margin-top: 0.7em;
+  font-size: 0.75rem;
+  color: #d0bcff;
+}
+
+._text-input__input {
+  display: block;
+  background-color: transparent;
+  border: none;
+  appearance: none;
+  margin-top: 0.3em;
+  line-height: 1.5rem;
+  letter-spacing: 0.5px;
+  margin-left: 0.885em;
+  font-size: 1rem;
+  color: #cac4d0;
+  text-align: left;
+  padding: 0;
+  width: 100%;
+}
+
+._text-input__input:active {
+  outline: none;
+  border: none;
+}
+
+._text-input__input:focus {
+  outline: none;
+  border: none;
+}

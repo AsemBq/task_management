@@ -1,0 +1,24 @@
+._header-wtih-icon {
+  color: #e6e0e9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0 3.75rem 0;
+}
+
+._header-wtih-icon h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+._header-wtih-icon ._header-with-icon__right-icon {
+  margin-left: auto;
+  margin-right: 1.5rem;
+}
+._header-wtih-icon ._header-with-icon__left-icon {
+  margin-right: auto;
+  margin-left: 1.5rem;
+}

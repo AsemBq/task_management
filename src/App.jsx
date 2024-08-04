@@ -3,12 +3,11 @@ import Wrapper from './Wrapper/Wrapper.jsx';
 // import TaskList1 from './TaskList1.jsx'
 
 function App() {
-    return (
-        <>
-            <Wrapper />
-            {/*<TaskList1/>*/}
-        </>
-    )
+  return (
+    <>
+      <Wrapper />
+    </>
+  );
 }
 
 export default App;
