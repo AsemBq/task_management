@@ -9,7 +9,7 @@ export default function CreateTask({ className }) {
     <div className={className}>
       <HeaderWithIcon
         text="Create Task"
-        RightIcon={ReturnIcon()}
+        rightIcon={ReturnIcon()}
       ></HeaderWithIcon>
       <CustomForm
         firstClassName="name"
