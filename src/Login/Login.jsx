@@ -16,6 +16,7 @@ export default function Login({ className }) {
         firstRight="0.05rem"
         secondClassName="password"
         secondName="Password"
+        secondType="password"
         SecondIcon={VisibilityIcon('23px', '23px')}
         buttonText="login"
         secondRight="0.8rem"
