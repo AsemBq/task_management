@@ -3,6 +3,9 @@ import './TextInput.css';
 export default function TextInput({
   className,
   name,
+  inputName,
+  id,
+  value,
   placeholder,
   inputType = 'text',
   icon,
@@ -10,11 +13,16 @@ export default function TextInput({
 }) {
   return (
     <div className={`_text-input__form-group ${className}`}>
-      <label className={`_text-input__label`}>{name}</label>
+      <label className={`_text-input__label`} htmlFor={id}>
+        {name}
+      </label>
       <input
+        name={inputName}
         type={inputType}
         className="_text-input__input"
+        value={value}
         placeholder={placeholder}
+        id={id}
       />
       <div className="_text-input__icon" style={{ right }}>
         {icon}
