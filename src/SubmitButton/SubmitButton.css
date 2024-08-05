@@ -1,6 +1,6 @@
 ._submit-btn {
-  height: 2.5em;
-  width: 14.9em;
+  height: 2.85em;
+  width: 16.65em;
   margin-inline: auto;
   text-decoration: none;
   border: 1px solid #938f99;
@@ -8,4 +8,6 @@
   border-radius: 100px;
   color: #d0bcff;
   margin-top: 5.5em;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
