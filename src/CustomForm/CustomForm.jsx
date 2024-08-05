@@ -33,7 +33,7 @@ export default function CustomForm({
         inputName={firstInputName}
         value={firstValue}
         placeholder={firstPlaceHolder}
-        type={firstType}
+        inputType={firstType}
         icon={firstIcon}
         right={firstRight}
       />
@@ -44,7 +44,7 @@ export default function CustomForm({
         inputName={secondInputName}
         value={secondValue}
         placeholder={secondPlaceHolder}
-        type={secondType}
+        inputType={secondType}
         icon={SecondIcon}
         right={secondRight}
       />
