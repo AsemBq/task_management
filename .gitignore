@@ -23,5 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+<<<<<<< HEAD
 #Backup
 backups/
+=======
+#Backups
+Backups/
+>>>>>>> 76a1bb2 (added backups/ to gitignore)
