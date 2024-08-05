@@ -2,6 +2,7 @@ import './EmptyTaskList.css'
 import LogOutIcon from "../LogOut/LogOut.jsx";
 import FileIcon from "../Icon/FileIcon/FileIcon.jsx";
 import PlusIcon from "../Icon/PlusIcon/PlusIcon.jsx";
+import AddTaskButton from "../AddTaskButton/AddTaskButton.jsx";
 const EmptyTaskList =({className})=>{
     return (
         <div className={className}>
@@ -17,10 +18,7 @@ const EmptyTaskList =({className})=>{
                 <span>Start with create a task</span>
             </div>
             <div className={'box-button'}>
-                <button className={'button'}>
-                        <span className='plus-icon'>{PlusIcon(13,12)}</span>
-                    <span className={'text'}>Task</span>
-                </button>
+                <AddTaskButton/>
             </div>
 
         </div>

@@ -22,28 +22,6 @@ li{
     align-items: center;
     justify-content: space-between;
 }
-.TasksList .box-tittle{
-    margin-top: 24px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.TasksList .top-left-icon{
-    position: absolute;
-    left: -50px;
-    cursor: pointer;
-}
-
-.TasksList .top-right-icon{
-    position: absolute;
-    right: -60px;
-}
-
-.TasksList .box-tittle h1{
-    font-size: 24px;
-    text-align: center;
-}
 
 .TasksList.TasksList  .box-body{
     width: 100%;
@@ -58,6 +36,7 @@ li{
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
+    cursor: pointer;
 
 }
 .TasksList .filter-icon path {
@@ -67,74 +46,13 @@ li{
 ;
 }
 
-.TasksList .tasks{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 59px;
-}
-
-.TasksList .tasks li:not(:last-child) {
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #49454F;
-}
-
-.TasksList .tasks li:last-child{
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-}
-
-.TasksList .circle{
-    display: inline-block;
-    vertical-align: middle;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 50%;
-    background-color: #4f378b;
-    margin-right: 16px;
-}
-.TasksList input[type='checkbox']{
-    width: 18px;
-    height: 18px;
-    color: #4f378b;
-    accent-color: #d0bcff;
-    cursor: pointer;
-}
-
-
 .TasksList .box-button{
     width: 80%;
     margin-bottom: 50px
 
 }
 
-.TasksList .button{
-    width: 100%;
-    background-color: transparent;
-    border: 1px solid #938F99;
-    border-radius: 25px;
-    padding: 10px 24px;
-    cursor: pointer;
+._header-with-icon{
+    align-self: stretch;
 }
 
-.TasksList .button .text {
-    font-size: 14px;
-    color: #D0BCFF;
-    font-weight: 500;
-}
-
-.TasksList .button .plus-icon {
-    margin-right: 5px;
-    vertical-align: center;
-    display: inline-block;
-}
