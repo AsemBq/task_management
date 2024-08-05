@@ -1,5 +1,5 @@
 import CustomForm from '../CustomForm/CustomForm';
-import DeleteIcon from '../DeleteIcon/DeleteIcon';
+import EraseIcon from '../EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import VisibilityIcon from '../VisibilityIcon/VisibilityIcon';
 
@@ -12,7 +12,7 @@ export default function Login({ className }) {
       <CustomForm
         firstClassName="username"
         firstName="Username"
-        firstIcon={DeleteIcon('45px', '45px')}
+        firstIcon={EraseIcon('45px', '45px')}
         firstRight="0.05rem"
         secondClassName="password"
         secondName="Password"
