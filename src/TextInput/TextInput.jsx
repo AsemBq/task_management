@@ -9,8 +9,8 @@ export default function TextInput({
   right,
 }) {
   return (
-    <div className="_text-input__form-group">
-      <label className={`${className} _text-input__label`}>{name}</label>
+    <div className={`_text-input__form-group ${className}`}>
+      <label className={`_text-input__label`}>{name}</label>
       <input
         type={inputType}
         className="_text-input__input"
