@@ -1,7 +1,7 @@
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import DeleteIcon from '../DeleteIcon/DeleteIcon';
-import ReturnIcon from '../ReturnIcon/ReturnIcon';
+import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
+import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
 import './EditTask.css';
 

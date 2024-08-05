@@ -1,7 +1,7 @@
 import './TaskList2.css'
 import LogOutIcon from "../LogOut/LogOut.jsx";
-import FilterIcon from "../FilterIcon/FilterIcon.jsx";
-import PlusIcon from "../PlusIcon/PlusIcon.jsx";
+import FilterIcon from "../Icon/FilterIcon/FilterIcon.jsx";
+import PlusIcon from "../Icon/PlusIcon/PlusIcon.jsx";
 
 const TaskList2=({className})=>{
     return (

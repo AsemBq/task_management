@@ -1,8 +1,8 @@
 import './TaskList1.css'
 import LogOutIcon from "../LogOut/LogOut.jsx";
-import PlusIcon from "../PlusIcon/PlusIcon.jsx";
-import LeftArrowIcon from "../LeftArrowIcon/LeftArrowIcon.jsx";
-import RightArrowIcon from "../RightArrowIcon/RightArrowIcon.jsx";
+import PlusIcon from "../Icon/PlusIcon/PlusIcon.jsx";
+import LeftArrowIcon from "../Icon/LeftArrowIcon/LeftArrowIcon.jsx";
+import RightArrowIcon from "../Icon/RightArrowIcon/RightArrowIcon.jsx";
 const TaskList1=({className})=>{
     return (
         <div className={className}>

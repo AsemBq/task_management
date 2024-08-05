@@ -1,7 +1,7 @@
 import './EmptyTaskList.css'
 import LogOutIcon from "../LogOut/LogOut.jsx";
-import FileIcon from "../FileIcon/FileIcon.jsx";
-import PlusIcon from "../PlusIcon/PlusIcon.jsx";
+import FileIcon from "../Icon/FileIcon/FileIcon.jsx";
+import PlusIcon from "../Icon/PlusIcon/PlusIcon.jsx";
 const EmptyTaskList =({className})=>{
     return (
         <div className={className}>

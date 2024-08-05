@@ -1,7 +1,7 @@
 import CustomForm from '../CustomForm/CustomForm';
-import EraseIcon from '../EraseIcon/EraseIcon';
+import EraseIcon from '../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import VisibilityIcon from '../VisibilityIcon/VisibilityIcon';
+import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
 
 import './Login.css';
 
