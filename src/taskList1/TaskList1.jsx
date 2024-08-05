@@ -3,33 +3,18 @@ import LogOutIcon from "../LogOut/LogOut.jsx";
 import PlusIcon from "../Icon/PlusIcon/PlusIcon.jsx";
 import LeftArrowIcon from "../Icon/LeftArrowIcon/LeftArrowIcon.jsx";
 import RightArrowIcon from "../Icon/RightArrowIcon/RightArrowIcon.jsx";
+import HeaderWithIcon from "../HeaderWithIcon/HeaderWithIcon.jsx";
+import Tasks from "../Tasks/Tasks.jsx";
+import AddTaskButton from "../AddTaskButton/AddTaskButton.jsx";
 const TaskList1=({className})=>{
     return (
         <div className={className}>
-
-            <div className="box-tittle">
-                    <span className='top-left-icon'>{LogOutIcon(24,24)}</span>
-                <h1>Jenny&#39;s Tasks</h1>
-            </div>
+            <HeaderWithIcon
+                text={"Jenny's Tasks"}
+                leftIcon={LogOutIcon("24px","24px")}
+            />
             <div className='box-body'>
-                <ul className='tasks'>
-                    <li className='task'>
-                        <div className='left'><span className='circle'>A</span> <span> Task #1</span>
-                        </div>
-                        <label className="custom-checkbox">
-                            <input type="checkbox"/>
-                            <span className="checkmark"></span>
-                        </label></li>
-                    <li className='task'>
-                        <div className='left'><span className='circle'>A</span> <span> Task #2</span>
-                        </div>
-                        <input type="checkbox"/></li>
-                    <li className='task'>
-                        <div className='left'><span className='circle'>A</span> <span> Task #3</span>
-                        </div>
-                        <input type="checkbox"/></li>
-
-                </ul>
+                <Tasks/>
             </div>
             <div className={'box-bottom'}>
                 <div className={'Pagination'}>
@@ -50,10 +35,7 @@ const TaskList1=({className})=>{
                        </span>
                 </div>
                 <div className={'box-button'}>
-                    <button className={'button'}>
-                        <span className='plus-icon'>{PlusIcon(13,12)}</span>
-                        <span className={'text'}>Task</span>
-                    </button>
+                    <AddTaskButton/>
                 </div>
             </div>
 

@@ -1,0 +1,20 @@
+.button{
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #938F99;
+    border-radius: 25px;
+    padding: 10px 24px;
+    cursor: pointer;
+}
+
+.button .text {
+    font-size: 14px;
+    color: #D0BCFF;
+    font-weight: 500;
+}
+
+.button .plus-icon {
+    margin-right: 5px;
+    vertical-align: center;
+    display: inline-block;
+}
