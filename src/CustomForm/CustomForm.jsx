@@ -4,6 +4,8 @@ import { useContext } from 'react';
 import { UserContext } from '../Wrapper/MainContext.jsx';
 
 import './CustomForm.css';
+import { useContext } from 'react';
+import { UserContext } from '../Wrapper/MainContext.jsx';
 
 export default function CustomForm({ config }) {
   const context = useContext(UserContext);

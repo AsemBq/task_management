@@ -5,6 +5,7 @@ import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
 
 import './Login.css';
 
+<<<<<<< HEAD
 export default function Login({ className }) {
   function handleClick() {
     console.log('clicked');
@@ -93,6 +94,26 @@ export default function Login({ className }) {
     <div className={className}>
       <HeaderWithIcon text="Task Manager"></HeaderWithIcon>
       <CustomForm config={config} />
+=======
+export default function Login({ className}) {
+
+    return (
+    <div className={className}>
+      <HeaderWithIcon text="Task Manager"></HeaderWithIcon>
+      <CustomForm
+
+        firstClassName="username"
+        firstName="Username"
+        firstIcon={EraseIcon('45px', '45px')}
+        firstRight="0.05rem"
+        secondClassName="password"
+        secondName="Password"
+        secondType="password"
+        SecondIcon={VisibilityIcon('23px', '23px')}
+        buttonText="login"
+        secondRight="0.8rem"
+      />
+>>>>>>> c5c9b2dfd866d8aa98177d77f9d87052208005c7
     </div>
   );
 }
