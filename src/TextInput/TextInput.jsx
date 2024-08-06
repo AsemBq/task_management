@@ -1,31 +1,14 @@
 import './TextInput.css';
 
-export default function TextInput({
-  className,
-  name,
-  inputName,
-  id,
-  value,
-  placeholder,
-  inputType = 'text',
-  icon,
-  right,
-}) {
+export default function TextInput({ ...config }) {
+  console.log('text input');
+  console.log(config['input']['tag']);
   return (
-    <div className={`_text-input__form-group ${className}`}>
-      <label className={`_text-input__label`} htmlFor={id}>
-        {name}
-      </label>
-      <input
-        name={inputName}
-        type={inputType}
-        className="_text-input__input"
-        value={value}
-        placeholder={placeholder}
-        id={id}
-      />
-      <div className="_text-input__icon" style={{ right }}>
-        {icon}
+    <div {...config['parentDiv']['tag']}>
+      <label {...config['label']['tag']}> {...config['label']['text']}</label>
+      <input {...config['input']['tag']} />
+      <div className="_text-input__icon" {...config['icon']['tag']}>
+        {config['icon']['icon']}
       </div>
     </div>
   );

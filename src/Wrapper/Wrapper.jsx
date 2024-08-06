@@ -14,7 +14,6 @@ export default function Wrapper() {
       <Login className="wrapper__item login_page" />
       <TaskList1 className="wrapper__item TaskList1" />
       <EmptyTaskList className="wrapper__item EmptyTaskList" />
-      {/* <WrapperItem className="wrapper__item edit_task" /> */}
       <EditTask className="wrapper__item edit_task" />
       <CreateTask className="wrapper__item create_task" />
       <TaskList2 className="wrapper__item TasksList" />
