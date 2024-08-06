@@ -1,27 +1,25 @@
 import TextInput from '../TextInput/TextInput';
 import SubmitButton from '../SubmitButton/SubmitButton';
+import { useContext } from 'react';
+import { UserContext } from '../Wrapper/MainContext.jsx';
 
 import './CustomForm.css';
 
 export default function CustomForm({ config }) {
-  const baseConfig = {
-    firstInput: {
-      placeholder: 'Placeholder',
-      type: 'text',
-    },
-    secondInput: {
-      placeholder: 'Placeholder',
-      type: 'text',
-    },
-    button: {},
+  const context = useContext(UserContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    switch (buttonText) {
+      case 'login':
+        context.setIsUser(true);
+        break;
+      case 'Save':
+        break;
+      case 'Create':
+        break;
+    }
   };
-  console.log(config);
 
-  // const updatedConfig = { ...baseConfig, ...config };
-  // console.log(updatedConfig);
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
   return (
     <form action="" className="_custom-form" onSubmit={handleSubmit}>
       <TextInput {...config['firstInput']} />
