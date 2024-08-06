@@ -81,7 +81,7 @@ export default function Login({ className }) {
       button: {
         tag: {
           className: '_submit-btn',
-          onClick: handleClick,
+          // onClick: handleClick,
         },
         text: {
           text: 'Login',

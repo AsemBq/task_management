@@ -4,15 +4,16 @@ import { useContext } from 'react';
 import { UserContext } from '../Wrapper/MainContext.jsx';
 
 import './CustomForm.css';
-import { useContext } from 'react';
-import { UserContext } from '../Wrapper/MainContext.jsx';
 
 export default function CustomForm({ config }) {
   const context = useContext(UserContext);
   const handleSubmit = (e) => {
     e.preventDefault();
-    switch (buttonText) {
-      case 'login':
+    console.log('hanlde submit');
+    console.log(config['button']['button']['text']);
+
+    switch (config['button']['button']['text']['text']) {
+      case 'Login':
         context.setIsUser(true);
         break;
       case 'Save':
