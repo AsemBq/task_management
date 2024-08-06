@@ -2,6 +2,8 @@ import TextInput from '../TextInput/TextInput';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
 import './CustomForm.css';
+import {useContext} from "react";
+import {UserContext} from "../Wrapper/MainContext.jsx";
 
 export default function CustomForm({
   firstClassName,
@@ -24,8 +26,23 @@ export default function CustomForm({
   secondRight,
   buttonText,
 }) {
+  const context=useContext(UserContext)
+  const HandleForm = (e)=>{
+    e.preventDefault();
+    switch (buttonText) {
+      case 'login':
+        context.setIsUser(true)
+        break;
+      case 'Save':
+
+        break;
+      case 'Create':
+        break
+    }
+  }
+
   return (
-    <form action="" className="_custom-form">
+    <form action="" className="_custom-form" onSubmit={HandleForm}>
       <TextInput
         className={`custom-form__label ${firstClassName}`}
         name={firstName}

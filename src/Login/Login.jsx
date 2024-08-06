@@ -5,11 +5,13 @@ import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
 
 import './Login.css';
 
-export default function Login({ className }) {
-  return (
+export default function Login({ className}) {
+
+    return (
     <div className={className}>
       <HeaderWithIcon text="Task Manager"></HeaderWithIcon>
       <CustomForm
+
         firstClassName="username"
         firstName="Username"
         firstIcon={EraseIcon('45px', '45px')}

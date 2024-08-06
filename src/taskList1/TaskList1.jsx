@@ -6,7 +6,10 @@ import RightArrowIcon from "../Icon/RightArrowIcon/RightArrowIcon.jsx";
 import HeaderWithIcon from "../HeaderWithIcon/HeaderWithIcon.jsx";
 import Tasks from "../Tasks/Tasks.jsx";
 import AddTaskButton from "../AddTaskButton/AddTaskButton.jsx";
+import {useContext} from "react";
+import {UserContext} from "../Wrapper/MainContext.jsx";
 const TaskList1=({className})=>{
+
     return (
         <div className={className}>
             <HeaderWithIcon

@@ -7,11 +7,11 @@ const Tasks=()=>{
             text={'Task #0'}
             />
             <Task
-                text={'Task #0'}
+                text={'Task #1'}
                 IsDone={true}
             />
             <Task
-                text={'Task #0'}
+                text={'Task #2'}
             />
         </ul>
     )
