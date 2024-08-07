@@ -25,6 +25,7 @@ export default function Login({ className }) {
       input: {
         tag: {
           className: '_text-input__input',
+          name: 'username',
           id: 'username',
           autoComplete: 'username',
           type: 'text',
@@ -57,10 +58,11 @@ export default function Login({ className }) {
       },
       input: {
         tag: {
+          className: '_text-input__input',
           id: 'password',
+          name: 'password',
           autoComplete: 'password',
           type: 'password',
-          className: '_text-input__input',
         },
       },
       icon: {

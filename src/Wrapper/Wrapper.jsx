@@ -5,24 +5,26 @@ import TaskList2 from '../taskList2/TaskList2';
 import CreateTask from '../CreateTask/CreateTask.jsx';
 import Login from '../Login/Login.jsx';
 import EditTask from '../EditTask/EditTask.jsx';
+import { LoginInfoContext } from '../Context/LoginInfoContext.jsx';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-import { UserContext } from './MainContext.jsx';
 
 export default function Wrapper() {
-    const UserToken =localStorage.getItem('token')
-    const [IsUser, setIsUser] = useState(UserToken? true : false);
+  const [loginState, setLoginState] = useState({
+    isLoggedin: false,
+    username: null,
+  });
 
   return (
     <div className="wrapper">
-      <UserContext.Provider value={{ IsUser, setIsUser }}>
+      <LoginInfoContext.Provider value={{ loginState, setLoginState }}>
         <Routes>
           <Route
             path="/list"
             element={
-              IsUser ? (
-                  <TaskList2 className="wrapper__item TasksList" />
+              loginState.isLoggedin ? (
+                <TaskList1 className="wrapper__item TaskList1" />
               ) : (
                 <Navigate to={'/login'} />
               )
@@ -31,7 +33,7 @@ export default function Wrapper() {
           <Route
             path="/create"
             element={
-              IsUser ? (
+              loginState.isLoggedin ? (
                 <CreateTask className="wrapper__item create_task" />
               ) : (
                 <Navigate to={'/login'} />
@@ -41,7 +43,7 @@ export default function Wrapper() {
           <Route
             path="/login"
             element={
-              IsUser ? (
+              loginState.isLoggedin ? (
                 <Navigate to={'/list'} />
               ) : (
                 <Login className="wrapper__item login_page" />
@@ -51,7 +53,7 @@ export default function Wrapper() {
           <Route
             path="/edit/:TaskId"
             element={
-              IsUser ? (
+              loginState.isLoggedin ? (
                 <EditTask className="wrapper__item edit_task" />
               ) : (
                 <Navigate to={'/login'} />
@@ -61,7 +63,7 @@ export default function Wrapper() {
           <Route
             path="*"
             element={
-              IsUser ? (
+              loginState.isLoggedin ? (
                 <TaskList2 className="wrapper__item TasksList" />
               ) : (
                 <Navigate to={'/login'} />
@@ -69,7 +71,7 @@ export default function Wrapper() {
             }
           />
         </Routes>
-      </UserContext.Provider>
+      </LoginInfoContext.Provider>
     </div>
   );
 }

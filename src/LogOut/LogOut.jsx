@@ -1,16 +1,20 @@
 import './LogOut.css';
 
 import LogOut from './logout.svg';
+import { useLoginInfoContext } from '../Context/LoginInfoContext'; // Ensure this import is correct
 
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../Wrapper/MainContext.jsx';
 
 export default function LogOutIcon(width, height) {
-  const context = useContext(UserContext);
-  const LogOutHandler = () => {
-    context.setIsUser(false);
+  const { loginStae, setLoginState } = useLoginInfoContext();
+
+  const handleLogout = () => {
+    setLoginState({
+      isLoggedin: false,
+      username: null,
+    });
   };
+
   return (
     <NavLink to="/login">
       <img
@@ -19,7 +23,7 @@ export default function LogOutIcon(width, height) {
         alt="LogOut Icon"
         width={width}
         height={height}
-        onClick={LogOutHandler}
+        onClick={handleLogout}
       ></img>
     </NavLink>
   );

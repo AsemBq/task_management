@@ -10,10 +10,12 @@ import { useContext } from 'react';
 import { UserContext } from '../Wrapper/MainContext.jsx';
 import Pagination from '../Pagination/Pagination.jsx';
 const TaskList1 = ({ className }) => {
+  const { loginState, setLoginState } = useLoginInfoContext();
+
   return (
     <div className={className}>
       <HeaderWithIcon
-        text={"Jenny's Tasks"}
+        text={`${loginState.username}'s Tasks`}
         leftIcon={LogOutIcon('24px', '24px')}
       />
       <div className="box-body">

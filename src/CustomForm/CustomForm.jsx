@@ -5,6 +5,7 @@ import SubmitButton from '../SubmitButton/SubmitButton';
 import { useContext, useRef } from 'react';
 import { UserContext } from '../Wrapper/MainContext.jsx';
 
+<<<<<<< HEAD
 import './CustomForm.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -70,6 +71,47 @@ export default function CustomForm({ config }) {
         UserLogin();
       };
       break;
+=======
+import { useState } from 'react';
+import { useLoginInfoContext } from '../Context/LoginInfoContext'; // Ensure this import is correct
+
+export default function CustomForm({ config }) {
+  const { loginState, setLoginState } = useLoginInfoContext();
+
+  const [loginError, setLoginError] = useState({
+    username: null,
+    password: null,
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+    const usernameText = formData['username'];
+    const passwordText = formData['password']; // Add this line if you have password input
+
+    const errors = {
+      username: !usernameText ? "username field can't be empty" : null,
+      password: !passwordText ? "password field can't be empty" : null, // Add this line if you have password input
+    };
+
+    setLoginError(errors);
+
+    if (errors.username || errors.password) {
+      return;
+    }
+
+    switch (config['button']['button']['text']['text']) {
+      case 'Login':
+        setLoginState({
+          isLoggedin: true,
+          username: formData['username'],
+        });
+        break;
+      case 'Save':
+        break;
+      case 'Create':
+        break;
+>>>>>>> c04c40e (added LoginInfo Context which takes care of logging users in and out.also deleted the previous Context. also added errors to login form on submit for empty username and password fields.)
     }
     case 'Edit': {
       handleSubmit = (e) => {
@@ -196,8 +238,16 @@ export default function CustomForm({ config }) {
 
   return (
     <form action="" className="_custom-form" onSubmit={handleSubmit}>
+<<<<<<< HEAD
       <TextInput ref={FirstInput} {...config['firstInput']} />
       <TextInput ref={SecondInput} {...config['secondInput']} />
+=======
+      <TextInput {...config['firstInput']} errorMessage={loginError.username} />
+      <TextInput
+        {...config['secondInput']}
+        errorMessage={loginError.password}
+      />
+>>>>>>> c04c40e (added LoginInfo Context which takes care of logging users in and out.also deleted the previous Context. also added errors to login form on submit for empty username and password fields.)
       <SubmitButton {...config['button']} />
     </form>
   );
