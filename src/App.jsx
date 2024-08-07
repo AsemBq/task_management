@@ -1,14 +1,15 @@
 import './assets/css/App.css';
+
 import Wrapper from './Wrapper/Wrapper.jsx';
-import {BrowserRouter} from "react-router-dom";
-// import TaskList1 from './TaskList1.jsx'
+
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
     <>
-        <BrowserRouter>
-            <Wrapper />
-        </BrowserRouter>
+      <BrowserRouter>
+        <Wrapper />
+      </BrowserRouter>
     </>
   );
 }

@@ -1,28 +1,32 @@
+import './EditTask.css';
+
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
 import './EditTask.css';
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function EditTask({ className }) {
-  const TaskId=useParams()
-  const token=JSON.parse(localStorage.getItem("token"));
-  const [task,setTask]=useState({});
+  const TaskId = useParams();
+  const token = JSON.parse(localStorage.getItem('token'));
+  const [task, setTask] = useState({});
 
   useEffect(() => {
-    const data={
-      'token': token,
-    }
-    const fetchTask=async () => {
-      const res= await axios.post('http://localhost:8000/user/user_tasks',data)
-      const task= res.data.Tasks.filter(task=>task.id == TaskId.TaskId)
-      setTask(task[0])
-      
-    }
+    const data = {
+      token: token,
+    };
+    const fetchTask = async () => {
+      const res = await axios.post(
+        'http://localhost:8000/user/user_tasks',
+        data
+      );
+      const task = res.data.Tasks.filter((task) => task.id == TaskId.TaskId);
+      setTask(task[0]);
+    };
     fetchTask();
   }, []);
 
@@ -101,18 +105,18 @@ export default function EditTask({ className }) {
         },
       },
     },
-    from:'Edit',
-    task:task
+    from: 'Edit',
+    task: task,
   };
 
   return (
     <div className={className}>
       <HeaderWithIcon
         text="Edit Task"
-        leftIcon={DeleteIcon('24px', '24px',TaskId.TaskId)}
+        leftIcon={DeleteIcon('24px', '24px', TaskId.TaskId)}
         rightIcon={ReturnIcon('10px', '15px')}
       ></HeaderWithIcon>
-      <CustomForm config={config}  />
+      <CustomForm config={config} />
     </div>
   );
 }

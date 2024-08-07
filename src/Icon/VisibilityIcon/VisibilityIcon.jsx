@@ -1,5 +1,7 @@
-import VisibilitySVG from './Visibility.svg';
 import './VisibilityIcon.css';
+
+import VisibilitySVG from './Visibility.svg';
+
 export default function VisibilityIcon(width, height) {
   return (
     <img

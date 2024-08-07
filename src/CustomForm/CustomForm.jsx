@@ -1,3 +1,5 @@
+import './CustomForm.css';
+
 import TextInput from '../TextInput/TextInput';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import { useContext, useRef } from 'react';

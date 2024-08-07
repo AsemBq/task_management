@@ -1,8 +1,9 @@
+import './Login.css';
+
 import CustomForm from '../CustomForm/CustomForm';
 import EraseIcon from '../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
-import './Login.css';
 
 export default function Login({ className }) {
   const config = {
@@ -83,7 +84,7 @@ export default function Login({ className }) {
         },
       },
     },
-    from:'Login'
+    from: 'Login',
   };
   return (
     <div className={className}>
