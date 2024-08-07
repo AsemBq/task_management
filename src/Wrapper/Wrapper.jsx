@@ -20,7 +20,7 @@ export default function Wrapper() {
             path="/list"
             element={
               IsUser ? (
-                <TaskList1 className="wrapper__item TaskList1" />
+                  <TaskList2 className="wrapper__item TasksList" />
               ) : (
                 <Navigate to={'/login'} />
               )

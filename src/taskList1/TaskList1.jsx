@@ -8,6 +8,7 @@ import Tasks from "../Tasks/Tasks.jsx";
 import AddTaskButton from "../AddTaskButton/AddTaskButton.jsx";
 import {useContext} from "react";
 import {UserContext} from "../Wrapper/MainContext.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
 const TaskList1=({className})=>{
 
     return (
@@ -20,23 +21,7 @@ const TaskList1=({className})=>{
                 <Tasks/>
             </div>
             <div className={'box-bottom'}>
-                <div className={'Pagination'}>
-                    <span className='lef-arrow'>
-                        {LeftArrowIcon(8,14)}
-                        </span>
-                    <ul className='pag-numbers'>
-                        <li className='pag-number'>13</li>
-                        <li className='pag-number'>14</li>
-                        <li className='pag-number'>15</li>
-                        <li className='pag-number'>16</li>
-                        <li className='pag-number active'>17</li>
-                        <li className='pag-number'>18</li>
-                        <li className='pag-number'>19</li>
-                    </ul>
-                    <span>
-                        {RightArrowIcon(8,14)}
-                       </span>
-                </div>
+                <Pagination/>
                 <div className={'box-button'}>
                     <AddTaskButton/>
                 </div>

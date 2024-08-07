@@ -1,7 +1,7 @@
 import Tasks from "../Tasks/Tasks.jsx";
 import {useState} from "react";
 
-const Task=({text,IsDone})=>{
+const Task=({text,IsDone=false})=>{
     const [Ischeck,setIscheck]=useState(IsDone);
     const ClickHandler=()=>{
         setIscheck(!Ischeck)}
@@ -16,8 +16,5 @@ const Task=({text,IsDone})=>{
     )
 }
 
-Task.defaultProps = {
-    done: false
-}
 
 export default Task;

@@ -21,31 +21,6 @@ li{
     margin-bottom: -30px;
 }
 
-.TaskList1 .Pagination{
-    display: flex;
-    align-items: center;
-}
-.TaskList1 .Pagination span{
-    cursor: pointer;
-}
-
-.TaskList1 .pag-number{
-    margin: 8px;
-    line-height: 30px;
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.TaskList1 .pag-numbers .active{
-    margin: 0;
-    width: 30px;
-    height: 30px;
-    color:#4A4458 ;
-    background-color: #D0BCFF ;
-    border-radius: 50%;
-}
-
 .TaskList1 .box-bottom{
     width: 80%;
     margin-bottom: 76px;

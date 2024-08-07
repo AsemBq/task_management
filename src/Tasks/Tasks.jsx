@@ -1,18 +1,18 @@
 import './Tasks.css'
 import Task from "../Task/Task.jsx";
-const Tasks=()=>{
+const Tasks=({tasks,loading})=>{
+    if(loading){
+        return <h2>Loading...</h2>;
+    }
     return (
         <ul className='tasks'>
-            <Task
-            text={'Task #0'}
-            />
-            <Task
-                text={'Task #1'}
-                IsDone={true}
-            />
-            <Task
-                text={'Task #2'}
-            />
+            {tasks.map(t=>(
+                <Task
+                    key={t.id}
+                    text={t.title.slice(0,15)}
+                    IsDone={true}
+                />
+            ))}
         </ul>
     )
 }
