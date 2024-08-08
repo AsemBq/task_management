@@ -35,10 +35,9 @@ li{
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
-    cursor: pointer;
 
 }
-.TasksList .filter-icon path {
+.TasksList .filter-icon img {
     width: 24px;
     height: 24px;
     cursor: pointer;

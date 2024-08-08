@@ -12,6 +12,11 @@ import { UserContext } from './MainContext.jsx';
 
 export default function Wrapper() {
   const [IsUser, setIsUser] = useState(true);
+
+    if (localStorage.getItem('User')){
+        setIsUser(true);
+    }
+
   return (
     <div className="wrapper">
       <UserContext.Provider value={{ IsUser, setIsUser }}>
@@ -47,7 +52,7 @@ export default function Wrapper() {
             }
           />
           <Route
-            path="/edit"
+            path="/edit/:id"
             element={
               IsUser ? (
                 <EditTask className="wrapper__item edit_task" />

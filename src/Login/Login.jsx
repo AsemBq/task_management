@@ -6,9 +6,6 @@ import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
 import './Login.css';
 
 export default function Login({ className }) {
-  function handleClick() {
-    console.log('clicked');
-  }
 
   const config = {
     firstInput: {

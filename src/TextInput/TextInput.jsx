@@ -1,8 +1,6 @@
 import './TextInput.css';
 
 export default function TextInput({ ...config }) {
-  console.log('text input');
-  console.log(config['input']['tag']);
   return (
     <div {...config['parentDiv']['tag']}>
       <label {...config['label']['tag']}> {...config['label']['text']}</label>

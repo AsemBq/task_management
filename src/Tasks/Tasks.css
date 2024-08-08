@@ -34,6 +34,11 @@
     background-color: #4f378b;
     margin-right: 16px;
 }
+
+.text{
+    text-decoration: none;
+}
+
 input[type='checkbox']{
     width: 18px;
     height: 18px;

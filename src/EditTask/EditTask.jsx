@@ -4,10 +4,12 @@ import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
 import './EditTask.css';
+import {useParams} from "react-router-dom";
 
 export default function EditTask({ className }) {
   function handleClick(event) {}
-
+  const params=useParams()
+  console.log(params)
   const config = {
     firstInput: {
       parentDiv: {
@@ -30,7 +32,7 @@ export default function EditTask({ className }) {
           id: 'name',
           autoComplete: 'name',
           type: 'text',
-          value: 'Task #1',
+          defaultValue: 'Task #1',
         },
       },
       icon: {
@@ -62,7 +64,7 @@ export default function EditTask({ className }) {
           autoComplete: 'priority',
           type: 'text',
           className: '_text-input__input',
-          value: 'High',
+          defaultValue: 'High',
         },
       },
       icon: {

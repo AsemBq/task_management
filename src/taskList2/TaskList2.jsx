@@ -11,12 +11,11 @@ import axios from "axios";
 
 const TaskList2=({className})=>{
     const[tasks, setTasks]=useState([]);
-    const [loading,setLoading]=useState(false);
+    const [loading,setLoading]=useState(true);
     const [currentPage,setCurrentPage]=useState(1);
     const [tasksPerPage,setTasksPerPage]=useState(3);
     useEffect(() => {
         const fetchTasks=async () => {
-            setLoading(true)
             const res= await axios.get('https://jsonplaceholder.typicode.com/posts')
             setTasks(res.data);
             setLoading(false);
@@ -27,7 +26,7 @@ const TaskList2=({className})=>{
     const indexOfLastTask=currentPage*tasksPerPage;
     const indexOfFirstTask=indexOfLastTask - tasksPerPage;
     const currentTasks=tasks.slice(indexOfFirstTask,indexOfLastTask)
-
+    console.log(tasks.length)
     return (
         <div className={className}>
             <HeaderWithIcon
@@ -35,9 +34,9 @@ const TaskList2=({className})=>{
                 leftIcon={LogOutIcon("24px","24px")}
                 />
                 <div className='box-body'>
-                    {loading ? <></> : <div className={'filter'}>
+                    {(!loading && tasks.length!=0) ? <div className={'filter'}>
                         <span className={'filter-icon'}>{FilterIcon(24, 24)}</span>
-                    </div>}
+                    </div> :<></>}
                     <Tasks tasks={currentTasks} loading={loading}/>
                 </div>
             <div className={'box-button'}>
