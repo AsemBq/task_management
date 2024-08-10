@@ -55,26 +55,26 @@ const AppContextProvider = ({ children }) => {
     setAppInfo((prev) => {
       const newAppInfo = { ...prev };
       const loggedInUser = newAppInfo.loggedInUser;
+      const tasks = newAppInfo.users[loggedInUser].tasks;
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         newAppInfo.users[loggedInUser].tasks.push({
+          id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 0,
           name: taskName,
           done: false,
           priority: taskPriority,
         });
       }
-      console.log('newAppInfo: ', newAppInfo);
-
       return newAppInfo;
     });
   };
 
-  const markTaskAsDoneOrUndone = (taskName, done) => {
+  const markTaskAsDoneOrUndone = (taskId, done) => {
     setAppInfo((prev) => {
       const newAppInfo = { ...prev };
       const loggedInUser = newAppInfo.loggedInUser;
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         const tasks = newAppInfo.users[loggedInUser].tasks;
-        const taskIndex = tasks.findIndex((task) => task.name === taskName);
+        const taskIndex = tasks.findIndex((task) => task.id === taskId);
         console.log('mark, taskIndex: ' + taskIndex + ' done: ' + done);
         if (taskIndex !== -1) {
           tasks[taskIndex] = {
@@ -87,13 +87,13 @@ const AppContextProvider = ({ children }) => {
     });
   };
 
-  const editTask = (oldTaskName, newTaskName, taskPriority) => {
+  const editTask = (taskID, newTaskName, taskPriority) => {
     setAppInfo((prev) => {
       const newAppInfo = { ...prev };
       const loggedInUser = newAppInfo.loggedInUser;
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         const tasks = newAppInfo.users[loggedInUser].tasks;
-        const taskIndex = tasks.findIndex((task) => task.name === oldTaskName);
+        const taskIndex = tasks.findIndex((task) => task.id === taskID);
         if (taskIndex !== -1) {
           tasks[taskIndex] = {
             ...tasks[taskIndex],
@@ -106,14 +106,14 @@ const AppContextProvider = ({ children }) => {
     });
   };
 
-  const deleteTask = (taskName) => {
+  const deleteTask = (taskId) => {
     setAppInfo((prev) => {
       const newAppInfo = { ...prev };
       const loggedInUser = newAppInfo.loggedInUser;
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         const tasks = newAppInfo.users[loggedInUser].tasks;
         newAppInfo.users[loggedInUser].tasks = tasks.filter(
-          (task) => task.name !== taskName
+          (task) => task.id !== taskId
         );
       }
       return newAppInfo;

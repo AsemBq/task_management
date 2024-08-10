@@ -2,23 +2,20 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
-const Task = ({ task }) => {
-  const [Ischeck, setIscheck] = useState(task.IsDone);
-  const token = JSON.parse(localStorage.getItem('token'));
-  const ClickHandler = () => {
-    const data = {
-      token: token,
-      id: task.id,
-      name: task.name,
-      priority: task.priority,
-      IsDone: !task.IsDone,
-    };
-    axios.post('http://localhost:8000/user/edit_tasks', data).then((res) => {
-      console.log(res);
-      setIscheck(!task.IsDone);
-    });
-  };
+const Task = ({ listId, name, isDone }) => {
+  const { markTaskAsDoneOrUndone } = useApp();
 
+  const [isChecked, setIsChecked] = useState(isDone);
+  useEffect(() => {
+    console.log('is checked: ' + isChecked);
+  }, [isChecked]);
+
+  const handleChange = () => {
+    console.log('handle change 1: ', isChecked);
+    markTaskAsDoneOrUndone(listId, !isChecked);
+    setIsChecked(!isChecked);
+    console.log('handle change 2: ', isChecked);
+  };
   return (
     <li className="task">
       <div className="left">
