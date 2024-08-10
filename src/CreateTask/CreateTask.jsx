@@ -1,22 +1,41 @@
+import './CreateTask.css';
+
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../Context/AppContext';
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
-import './CreateTask.css';
+import { useState } from 'react';
 
 export default function CreateTask({ className }) {
   const { addTask } = useApp();
   const navigate = useNavigate();
 
+  const [taskError, setTaskError] = useState({
+    name: null,
+    priority: null,
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
-    const name = formData['name'];
-    const priority = formData['priority'];
-    addTask(name, priority);
-    navigate(-1);
+    const nameText = formData['name'];
+    const priorityText = formData['priority'];
+
+    const errors = {
+      name: !nameText ? "Name field can't be empty" : null,
+      priority: !priorityText ? "Priority field can't be empty" : null,
+    };
+
+    setTaskError(errors);
+
+    if (errors.name || errors.priority) {
+      return;
+    }
+
+    addTask(nameText, priorityText);
+    navigate('/list');
   }
 
   const config = {
@@ -24,6 +43,7 @@ export default function CreateTask({ className }) {
       onSubmit: handleSubmit,
     },
     firstInput: {
+      error: taskError.name,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -36,7 +56,7 @@ export default function CreateTask({ className }) {
           placeholder: 'PlaceHolder',
           htmlFor: 'name',
         },
-        text: 'name',
+        text: 'Name',
       },
       input: {
         tag: {
@@ -56,6 +76,7 @@ export default function CreateTask({ className }) {
       },
     },
     secondInput: {
+      error: taskError.priority,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -68,7 +89,7 @@ export default function CreateTask({ className }) {
           placeholder: 'PlaceHolder',
           htmlFor: 'priority',
         },
-        text: 'priority',
+        text: 'Priority',
       },
       input: {
         tag: {

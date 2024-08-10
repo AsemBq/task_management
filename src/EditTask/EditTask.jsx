@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useApp } from '../Context/AppContext';
+import { useState } from 'react';
 
 export default function EditTask({ className }) {
   const navigate = useNavigate();
@@ -42,6 +43,18 @@ export default function EditTask({ className }) {
     const formData = Object.fromEntries(new FormData(e.target).entries());
     const nameText = formData['name'];
     const priorityText = formData['priority'];
+
+    const errors = {
+      name: !nameText ? "Name field can't be empty" : null,
+      priority: !priorityText ? "Priority field can't be empty" : null,
+    };
+
+    setTaskError(errors);
+
+    if (errors.name || errors.priority) {
+      return;
+    }
+
     editTask(taskId, nameText, priorityText);
     navigate('/list');
   };
@@ -51,6 +64,7 @@ export default function EditTask({ className }) {
       onSubmit: handleSubmit,
     },
     firstInput: {
+      error: taskError.name,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -85,6 +99,7 @@ export default function EditTask({ className }) {
       },
     },
     secondInput: {
+      error: taskError.priority,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',

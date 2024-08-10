@@ -42,7 +42,7 @@ export default function Login({ className }) {
       onSubmit: handleSubmit,
     },
     firstInput: {
-      error: loginError['username'],
+      error: loginError.username,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -77,7 +77,7 @@ export default function Login({ className }) {
       },
     },
     secondInput: {
-      error: loginError['password'],
+      error: loginError.password,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
