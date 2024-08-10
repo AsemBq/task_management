@@ -41,7 +41,6 @@ const Pagination = ({taskPerPage,totalTasks,currentPage,setCurrentPage,loading})
     }
 
     const paginate=pageNumber=>setCurrentPage(pageNumber);
-    console.log(PageArry(currentPage,pageNumber.length))
 
     return (
         <div className={'Pagination'}>

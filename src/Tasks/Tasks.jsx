@@ -9,10 +9,8 @@ const Tasks=({tasks,loading})=>{
         <ul className='tasks'>
             {tasks.length > 0 ? tasks.map(t=>(
                 <Task
+                    task={t}
                     key={t.id}
-                    text={t.title.slice(0,15)}
-                    id={t.id}
-                    IsDone={true}
                 />
             )):
             <EmptyTaskList/>

@@ -9,13 +9,11 @@ import EditTask from '../EditTask/EditTask.jsx';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserContext } from './MainContext.jsx';
+import CreatUser from "../CreatUser/CreatUser.jsx";
 
 export default function Wrapper() {
-  const [IsUser, setIsUser] = useState(true);
-
-    if (localStorage.getItem('User')){
-        setIsUser(true);
-    }
+    const UserToken =localStorage.getItem('token')
+    const [IsUser, setIsUser] = useState(UserToken? true : false);
 
   return (
     <div className="wrapper">
@@ -52,7 +50,7 @@ export default function Wrapper() {
             }
           />
           <Route
-            path="/edit/:id"
+            path="/edit/:TaskId"
             element={
               IsUser ? (
                 <EditTask className="wrapper__item edit_task" />
@@ -61,6 +59,17 @@ export default function Wrapper() {
               )
             }
           />
+            <Route
+            path="/register"
+            element={
+                IsUser ? (
+                    <Navigate to={'/list'} />
+
+                ) : (
+                    <CreatUser className="wrapper__item login_page" />
+                )
+            }
+            />
           <Route
             path="*"
             element={
@@ -73,13 +82,6 @@ export default function Wrapper() {
           />
         </Routes>
       </UserContext.Provider>
-      {/*<Login className="wrapper__item login_page" />*/}
-      {/*<TaskList1 className="wrapper__item TaskList1" />*/}
-      {/*<EmptyTaskList className="wrapper__item EmptyTaskList" />*/}
-      {/*/!* <WrapperItem className="wrapper__item edit_task" /> *!/*/}
-      {/*<EditTask className="wrapper__item edit_task" />*/}
-      {/*<CreateTask className="wrapper__item create_task" />*/}
-      {/*<TaskList2 className="wrapper__item TasksList" />*/}
     </div>
   );
 }

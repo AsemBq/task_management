@@ -3,3 +3,13 @@
   justify-content: center;
   margin-top: 5.8em;
 }
+
+.Custom_tittle_alarm{
+  color: #fff;
+  font-size: 21px;
+  line-height: 26px;
+}
+.Custom_container_alarm{
+  width: 300px;
+  height: 300px;
+}

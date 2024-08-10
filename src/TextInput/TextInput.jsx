@@ -1,13 +1,16 @@
 import './TextInput.css';
+import {forwardRef, useRef} from "react";
 
-export default function TextInput({ ...config }) {
+const TextInput=({ ...config },ref)=>{
   return (
     <div {...config['parentDiv']['tag']}>
       <label {...config['label']['tag']}> {...config['label']['text']}</label>
-      <input {...config['input']['tag']} />
+      <input ref={ref} {...config['input']['tag']} />
       <div className="_text-input__icon" {...config['icon']['tag']}>
         {config['icon']['icon']}
       </div>
     </div>
   );
 }
+
+export default forwardRef(TextInput);

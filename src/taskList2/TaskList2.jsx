@@ -10,32 +10,46 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 const TaskList2=({className})=>{
-    const[tasks, setTasks]=useState([]);
+    const token=JSON.parse(localStorage.getItem("token"));
+    const Username=JSON.parse(localStorage.getItem("UserName"));
+    const [tasks, setTasks]=useState([]);
     const [loading,setLoading]=useState(true);
     const [currentPage,setCurrentPage]=useState(1);
     const [tasksPerPage,setTasksPerPage]=useState(3);
+    const indexOfLastTask=currentPage*tasksPerPage;
+    const indexOfFirstTask=indexOfLastTask - tasksPerPage;
+
+    const [isFiltered,setIsFiltered]=useState(false);
+    const [filtered,setFiltered]=useState([]);
+    let currentTasks
+
+    if (!isFiltered){
+        currentTasks=tasks.slice(indexOfFirstTask,indexOfLastTask)
+    }else {
+        currentTasks=filtered.slice(indexOfFirstTask,indexOfLastTask)
+    }
+
     useEffect(() => {
+        const data={
+            'token': token,
+        }
         const fetchTasks=async () => {
-            const res= await axios.get('https://jsonplaceholder.typicode.com/posts')
-            setTasks(res.data);
+            const res= await axios.post('http://localhost:8000/user/user_tasks',data)
+            console.log(res)
+            setTasks(res.data.Tasks);
             setLoading(false);
         }
         fetchTasks();
     }, []);
-
-    const indexOfLastTask=currentPage*tasksPerPage;
-    const indexOfFirstTask=indexOfLastTask - tasksPerPage;
-    const currentTasks=tasks.slice(indexOfFirstTask,indexOfLastTask)
-    console.log(tasks.length)
     return (
         <div className={className}>
             <HeaderWithIcon
-                text={"Jenny's Tasks"}
+                text={`${Username}'s Tasks`}
                 leftIcon={LogOutIcon("24px","24px")}
                 />
                 <div className='box-body'>
                     {(!loading && tasks.length!=0) ? <div className={'filter'}>
-                        <span className={'filter-icon'}>{FilterIcon(24, 24)}</span>
+                        <span className={'filter-icon'}><FilterIcon width={24} height={24}/></span>
                     </div> :<></>}
                     <Tasks tasks={currentTasks} loading={loading}/>
                 </div>

@@ -6,6 +6,8 @@ import {UserContext} from "../Wrapper/MainContext.jsx";
 export default function LogOutIcon(width, height) {
     const context=useContext(UserContext);
     const LogOutHandler=()=>{
+        localStorage.removeItem('token')
+        localStorage.removeItem('UserName')
         context.setIsUser(false)
     }
     return (

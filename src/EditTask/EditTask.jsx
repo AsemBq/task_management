@@ -5,11 +5,27 @@ import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
 import './EditTask.css';
 import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function EditTask({ className }) {
-  function handleClick(event) {}
-  const params=useParams()
-  console.log(params)
+  const TaskId=useParams()
+  const token=JSON.parse(localStorage.getItem("token"));
+  const [task,setTask]=useState({});
+
+  useEffect(() => {
+    const data={
+      'token': token,
+    }
+    const fetchTask=async () => {
+      const res= await axios.post('http://localhost:8000/user/user_tasks',data)
+      const task= res.data.Tasks.filter(task=>task.id == TaskId.TaskId)
+      setTask(task[0])
+      
+    }
+    fetchTask();
+  }, []);
+
   const config = {
     firstInput: {
       parentDiv: {
@@ -32,7 +48,7 @@ export default function EditTask({ className }) {
           id: 'name',
           autoComplete: 'name',
           type: 'text',
-          defaultValue: 'Task #1',
+          defaultValue: task.name,
         },
       },
       icon: {
@@ -64,7 +80,7 @@ export default function EditTask({ className }) {
           autoComplete: 'priority',
           type: 'text',
           className: '_text-input__input',
-          defaultValue: 'High',
+          defaultValue: task.priority,
         },
       },
       icon: {
@@ -79,23 +95,24 @@ export default function EditTask({ className }) {
       button: {
         tag: {
           className: '_submit-btn',
-          onClick: handleClick,
         },
         text: {
           text: 'Save',
         },
       },
     },
+    from:'Edit',
+    task:task
   };
 
   return (
     <div className={className}>
       <HeaderWithIcon
-        text="Edit Task #1"
-        leftIcon={DeleteIcon('24px', '24px')}
+        text="Edit Task"
+        leftIcon={DeleteIcon('24px', '24px',TaskId.TaskId)}
         rightIcon={ReturnIcon('10px', '15px')}
       ></HeaderWithIcon>
-      <CustomForm config={config} />
+      <CustomForm config={config}  />
     </div>
   );
 }

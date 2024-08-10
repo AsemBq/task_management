@@ -1,3 +1,35 @@
 .delete-icon {
   cursor: pointer;
 }
+
+.Custom_tittle_alarm2{
+  color: #fff;
+}
+.Custom_container_alarm2{
+  background-color: #2b2930;
+  color: #fff;
+  /*color: red;*/
+}
+.swal2-icon-content{
+  color: red;
+}
+.Custom_confirmButton_alarm2{
+  color: #fff;
+  padding: 10px 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #208d00;
+  margin-left: 20px;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.Custom_cancelButton_alarm2{
+  color: #fff;
+  padding: 10px 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #b40002;
+  box-shadow: none;
+  cursor: pointer;
+}
