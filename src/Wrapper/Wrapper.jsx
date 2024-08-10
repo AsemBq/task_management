@@ -52,7 +52,7 @@ export default function Wrapper() {
             path="*"
             element={
               <ProtectedRoute nav={<Navigate to={'/login'} />}>
-                <TaskList2 className="wrapper__item TasksList" />
+                <TaskList1 className="wrapper__item TasksList" />
               </ProtectedRoute>
             }
           />
