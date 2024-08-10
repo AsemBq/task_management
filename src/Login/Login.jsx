@@ -21,11 +21,11 @@ export default function Login({ className }) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     const usernameText = formData['username'];
-    const passwordText = formData['password']; // Add this line if you have password input
+    const passwordText = formData['password'];
 
     const errors = {
       username: !usernameText ? "username field can't be empty" : null,
-      password: !passwordText ? "password field can't be empty" : null, // Add this line if you have password input
+      password: !passwordText ? "password field can't be empty" : null,
     };
 
     setLoginError(errors);
@@ -34,15 +34,7 @@ export default function Login({ className }) {
       return;
     }
 
-    switch (config['button']['button']['text']['text']) {
-      case 'Login':
-        logUserIn(usernameText);
-        break;
-      case 'Save':
-        break;
-      case 'Create':
-        break;
-    }
+    logUserIn(usernameText);
   };
 
   const config = {

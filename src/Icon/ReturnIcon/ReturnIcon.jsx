@@ -13,7 +13,7 @@ export default function ReturnIcon(width, height) {
       alt="Return Icon"
       width={width}
       height={height}
-      onClick={() => navigate(-1)}
+      onClick={() => navigate('/list')}
     ></img>
   );
 }
