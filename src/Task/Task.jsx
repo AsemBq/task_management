@@ -28,7 +28,7 @@ const Task = ({ task }) => {
         </NavLink>
       </div>
       <label className="custom-checkbox">
-        <input type="checkbox" checked={Ischeck} onChange={ClickHandler} />
+        <input type="checkbox" checked={isChecked} onChange={handleChange} />
         <span className="checkmark"></span>
       </label>
     </li>

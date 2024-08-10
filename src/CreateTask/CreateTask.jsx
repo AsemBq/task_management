@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useApp } from '../Context/AppContext';
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
@@ -5,9 +7,22 @@ import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 import './CreateTask.css';
 
 export default function CreateTask({ className }) {
-  function handleClick(event) {}
+  const { addTask } = useApp();
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+    const name = formData['name'];
+    const priority = formData['priority'];
+    addTask(name, priority);
+    navigate(-1);
+  }
 
   const config = {
+    form: {
+      onSubmit: handleSubmit,
+    },
     firstInput: {
       parentDiv: {
         tag: {
@@ -27,6 +42,7 @@ export default function CreateTask({ className }) {
         tag: {
           className: '_text-input__input',
           id: 'name',
+          name: 'name',
           autoComplete: 'name',
           type: 'text',
         },
@@ -56,10 +72,11 @@ export default function CreateTask({ className }) {
       },
       input: {
         tag: {
-          id: 'priority',
-          autoComplete: 'priority',
-          type: 'password',
           className: '_text-input__input',
+          id: 'priority',
+          name: 'priority',
+          autoComplete: 'priority',
+          type: 'text',
         },
       },
       icon: {
@@ -74,7 +91,6 @@ export default function CreateTask({ className }) {
       button: {
         tag: {
           className: '_submit-btn',
-          onClick: handleClick,
         },
         text: {
           text: 'Creaet',

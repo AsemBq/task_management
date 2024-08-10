@@ -1,19 +1,16 @@
 import './Tasks.css';
 import Task from '../Task/Task.jsx';
-import EmptyTaskList from '../EmptyTaskList/EmptyTaskList.jsx';
-const Tasks = ({ tasks, loading }) => {
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
-  return (
-    <ul className="tasks">
-      {tasks.length > 0 ? (
-        tasks.map((t) => <Task task={t} key={t.id} />)
-      ) : (
-        <EmptyTaskList />
-      )}
-    </ul>
-  );
+import { useApp } from '../Context/AppContext.jsx';
+
+const Tasks = () => {
+  const { getTasks } = useApp();
+
+  const tasksList = getTasks().map((item) => {
+    console.log('tasks,  ' + item.name + ': ' + item.done);
+    return <Task key={item.name} name={item.name} isDone={item.done} />;
+  });
+
+  return <ul className="tasks">{tasksList}</ul>;
 };
 
 export default Tasks;

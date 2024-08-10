@@ -4,10 +4,53 @@ import CustomForm from '../CustomForm/CustomForm';
 import EraseIcon from '../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
+import { useState } from 'react';
+import { useApp } from '../Context/AppContext';
 
 export default function Login({ className }) {
+  const { logUserIn } = useApp();
+
+  const [loginError, setLoginError] = useState({
+    username: null,
+    password: null,
+  });
+
+  const handleSubmit = (e) => {
+    console.log('handle submit');
+
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+    const usernameText = formData['username'];
+    const passwordText = formData['password']; // Add this line if you have password input
+
+    const errors = {
+      username: !usernameText ? "username field can't be empty" : null,
+      password: !passwordText ? "password field can't be empty" : null, // Add this line if you have password input
+    };
+
+    setLoginError(errors);
+
+    if (errors.username || errors.password) {
+      return;
+    }
+
+    switch (config['button']['button']['text']['text']) {
+      case 'Login':
+        logUserIn(usernameText);
+        break;
+      case 'Save':
+        break;
+      case 'Create':
+        break;
+    }
+  };
+
   const config = {
+    form: {
+      onSubmit: handleSubmit,
+    },
     firstInput: {
+      error: loginError['username'],
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -42,6 +85,7 @@ export default function Login({ className }) {
       },
     },
     secondInput: {
+      error: loginError['password'],
       parentDiv: {
         tag: {
           className: '_text-input__form-group',

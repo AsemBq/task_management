@@ -1,18 +1,15 @@
 import './LogOut.css';
 
 import LogOut from './logout.svg';
-import { useLoginInfoContext } from '../Context/LoginInfoContext'; // Ensure this import is correct
 
 import { NavLink } from 'react-router-dom';
+import { useApp } from '../Context/AppContext';
 
 export default function LogOutIcon(width, height) {
-  const { loginStae, setLoginState } = useLoginInfoContext();
+  const { appInfo, logUserOut } = useApp();
 
   const handleLogout = () => {
-    setLoginState({
-      isLoggedin: false,
-      username: null,
-    });
+    logUserOut();
   };
 
   return (
