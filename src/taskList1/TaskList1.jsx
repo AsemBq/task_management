@@ -21,7 +21,7 @@ const TaskList1 = ({ className }) => {
         <Tasks />
       </div>
       <div className={'box-bottom'}>
-        <Pagination />
+        {/* <Pagination /> */}
         <div className={'box-button'}>
           <AddTaskButton />
         </div>

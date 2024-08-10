@@ -4,18 +4,21 @@ import CustomForm from '../CustomForm/CustomForm';
 import EraseIcon from '../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
+import useLogin from '../hooks/useLogin';
+import { useUser } from '../Context/UserContext';
+
 import { useState } from 'react';
-import { useApp } from '../Context/AppContext';
 
 export default function Login({ className }) {
-  const { logUserIn } = useApp();
+  const { logUserIn } = useUser();
 
   const [loginError, setLoginError] = useState({
     username: null,
     password: null,
+    wrongUsernameOrPassword: null,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     console.log('handle submit');
 
     e.preventDefault();
@@ -33,11 +36,28 @@ export default function Login({ className }) {
     if (errors.username || errors.password) {
       return;
     }
-
-    logUserIn(usernameText);
+    try {
+      const login = useLogin();
+      const { record, token } = await login(usernameText, passwordText);
+      const { name, username } = record;
+      logUserIn(name, username, token);
+    } catch (e) {
+      console.log('error: ', e);
+      setLoginError((prev) => {
+        const newError = { ...prev };
+        newError['wrongUsernameOrPassword'] = 'Wrong useranme or password';
+        return newError;
+      });
+    }
   };
 
   const config = {
+    error: {
+      tag: {
+        className: null,
+      },
+      text: loginError['wrongUsernameOrPassword'],
+    },
     form: {
       onSubmit: handleSubmit,
     },
@@ -115,7 +135,6 @@ export default function Login({ className }) {
       button: {
         tag: {
           className: '_submit-btn',
-          // onClick: handleClick,
         },
         text: {
           text: 'Login',

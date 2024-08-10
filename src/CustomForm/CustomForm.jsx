@@ -10,10 +10,19 @@ export default function CustomForm({ config }) {
   const { logUserIn, appInfo } = useApp();
 
   return (
-    <form action="" className="_custom-form" {...config['form']}>
-      <TextInput {...config['firstInput']} />
-      <TextInput {...config['secondInput']} />
-      <SubmitButton {...config['button']} />
-    </form>
+    <>
+      {config['error']['text'] && (
+        <h3
+          className={`_custom-form__error ${config['error']['tag']['classNmae']}}`}
+        >
+          {config['error']['text']}
+        </h3>
+      )}
+      <form action="" className="_custom-form" {...config['form']}>
+        <TextInput {...config['firstInput']} />
+        <TextInput {...config['secondInput']} />
+        <SubmitButton {...config['button']} />
+      </form>
+    </>
   );
 }
