@@ -5,13 +5,11 @@ import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
-import { useEffect, useState } from 'react';
-
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useApp } from '../Context/AppContext';
-import { useState } from 'react';
 
 export default function EditTask({ className }) {
   const navigate = useNavigate();
