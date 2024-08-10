@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 export default function EditTask({ className }) {
   const navigate = useNavigate();
-  const { getTask, editTask } = useApp();
+  const { getTask, editTask, deleteTask } = useApp();
   const [searchParams] = useSearchParams();
   const taskId = searchParams.get('id') || '1'; // Default to 1 if not defined
 
@@ -56,6 +56,11 @@ export default function EditTask({ className }) {
     }
 
     editTask(taskId, nameText, priorityText);
+    navigate('/list');
+  };
+
+  const handleDelete = () => {
+    deleteTask(taskId);
     navigate('/list');
   };
 
@@ -149,7 +154,7 @@ export default function EditTask({ className }) {
     <div className={className}>
       <HeaderWithIcon
         text={task.name}
-        leftIcon={DeleteIcon('24px', '24px')}
+        leftIcon={DeleteIcon('24px', '24px', handleDelete)}
         rightIcon={ReturnIcon('10px', '15px')}
       ></HeaderWithIcon>
       <CustomForm config={config} />

@@ -112,7 +112,7 @@ const AppContextProvider = ({ children }) => {
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         const tasks = newAppInfo.users[loggedInUser].tasks;
         newAppInfo.users[loggedInUser].tasks = tasks.filter(
-          (task) => task.id !== taskId
+          (task) => task.id != taskId
         );
       }
       return newAppInfo;

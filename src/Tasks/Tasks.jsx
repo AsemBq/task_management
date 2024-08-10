@@ -6,7 +6,6 @@ const Tasks = () => {
   const { getTasks } = useApp();
 
   const tasksList = getTasks().map((item) => {
-    console.log('tasks,  ' + item.name + ': ' + item.done);
     return (
       <Task
         key={item.name}
