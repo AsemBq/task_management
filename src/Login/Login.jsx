@@ -39,8 +39,8 @@ export default function Login({ className }) {
     try {
       const login = useLogin();
       const { record, token } = await login(usernameText, passwordText);
-      const { name, username } = record;
-      logUserIn(name, username, token);
+      const { name, username, id } = record;
+      logUserIn(name, username, token, id);
     } catch (e) {
       console.log('error: ', e);
       setLoginError((prev) => {

@@ -5,6 +5,7 @@ const initState = {
   name: null,
   username: null,
   token: null,
+  userId: null,
 };
 
 const getInitialState = () => {
@@ -24,11 +25,12 @@ const UserContextProvider = ({ children }) => {
     localStorage.setItem('user', JSON.stringify(userState));
   }, [userState]);
 
-  const logUserIn = (name, username, token) => {
+  const logUserIn = (name, username, token, userId) => {
     setUserState({
       name: name,
       username: username,
       token: token,
+      userId: userId,
     });
   };
 
