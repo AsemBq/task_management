@@ -9,7 +9,6 @@ import EditTask from '../EditTask/EditTask.jsx';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserContext } from './MainContext.jsx';
-import CreatUser from "../CreatUser/CreatUser.jsx";
 
 export default function Wrapper() {
     const UserToken =localStorage.getItem('token')
@@ -59,17 +58,6 @@ export default function Wrapper() {
               )
             }
           />
-            <Route
-            path="/register"
-            element={
-                IsUser ? (
-                    <Navigate to={'/list'} />
-
-                ) : (
-                    <CreatUser className="wrapper__item login_page" />
-                )
-            }
-            />
           <Route
             path="*"
             element={
