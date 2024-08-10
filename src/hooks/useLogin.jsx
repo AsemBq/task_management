@@ -1,26 +1,16 @@
+import pb from '../lib/Pocketbase';
+
 export default function useLogin(port = '8090') {
   return async function loginUser(username, password) {
-    const response = await fetch(
-      `http://127.0.0.1:${port}/api/collections/users/auth-with-password`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          identity: username,
-          password: password,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Login failed');
+    try {
+      const authData = await pb
+        .collection('users')
+        .authWithPassword(username, password);
+      console.log('logged in successfully');
+      return authData;
+    } catch (error) {
+      console.error('Error logging in:', error);
+      throw error; // Re-throw the error to handle it in the calling code
     }
-
-    const res = await response.json();
-    console.log(res);
-    return res;
   };
 }
