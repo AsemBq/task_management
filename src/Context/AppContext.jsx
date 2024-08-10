@@ -5,14 +5,14 @@ const initAppInfo = {
   users: {
     default: {
       tasks: [
-        { name: 'task1', done: false, priority: 'low' },
-        { name: 'task2', done: true, priority: 'high' },
+        { id: 0, name: 'task1', done: false, priority: 'low' },
+        { id: 1, name: 'task2', done: true, priority: 'high' },
       ],
     },
     mhmd: {
       tasks: [
-        { name: 'feed the dog', done: true, priority: 'low' },
-        { name: 'go out', done: false, priority: 'low' },
+        { id: 0, name: 'feed the dog', done: true, priority: 'low' },
+        { id: 1, name: 'go out', done: false, priority: 'low' },
       ],
     },
   },
@@ -75,7 +75,6 @@ const AppContextProvider = ({ children }) => {
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         const tasks = newAppInfo.users[loggedInUser].tasks;
         const taskIndex = tasks.findIndex((task) => task.id === taskId);
-        console.log('mark, taskIndex: ' + taskIndex + ' done: ' + done);
         if (taskIndex !== -1) {
           tasks[taskIndex] = {
             ...tasks[taskIndex],
@@ -93,7 +92,7 @@ const AppContextProvider = ({ children }) => {
       const loggedInUser = newAppInfo.loggedInUser;
       if (loggedInUser && newAppInfo.users[loggedInUser]) {
         const tasks = newAppInfo.users[loggedInUser].tasks;
-        const taskIndex = tasks.findIndex((task) => task.id === taskID);
+        const taskIndex = tasks.findIndex((task) => task.id == taskID);
         if (taskIndex !== -1) {
           tasks[taskIndex] = {
             ...tasks[taskIndex],
@@ -126,6 +125,13 @@ const AppContextProvider = ({ children }) => {
     }
   };
 
+  const getTask = (id) => {
+    if (appInfo.loggedInUser) {
+      const x = appInfo.users[loggedInUser].tasks.find((task) => task.id == id);
+      return x;
+    }
+  };
+
   const loggedInUser = appInfo.loggedInUser;
   return (
     <AppContext.Provider
@@ -137,6 +143,7 @@ const AppContextProvider = ({ children }) => {
         editTask,
         deleteTask,
         getTasks,
+        getTask,
         loggedInUser,
       }}
     >

@@ -1,28 +1,28 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useApp } from '../Context/AppContext.jsx';
+
+import { useEffect, useState } from 'react';
 
 const Task = ({ listId, name, isDone }) => {
+  const navigate = useNavigate();
+
   const { markTaskAsDoneOrUndone } = useApp();
 
   const [isChecked, setIsChecked] = useState(isDone);
-  useEffect(() => {
-    console.log('is checked: ' + isChecked);
-  }, [isChecked]);
 
   const handleChange = () => {
-    console.log('handle change 1: ', isChecked);
     markTaskAsDoneOrUndone(listId, !isChecked);
     setIsChecked(!isChecked);
-    console.log('handle change 2: ', isChecked);
   };
+
+  const handleClick = () => {
+    navigate(`/edit?id=${listId}`);
+  };
+
   return (
     <li className="task">
-      <div className="left">
-        <span className="circle">A</span>{' '}
-        <NavLink className={'text'} to={`/edit/${task.id}`}>
-          <span> {task.name.slice(0, 20)}</span>
-        </NavLink>
+      <div className="left" onClick={handleClick}>
+        <span className="circle">A</span> <span> {name}</span>
       </div>
       <label className="custom-checkbox">
         <input type="checkbox" checked={isChecked} onChange={handleChange} />

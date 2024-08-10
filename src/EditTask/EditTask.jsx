@@ -5,15 +5,22 @@ import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
-import './EditTask.css';
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 import axios from 'axios';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useApp } from '../Context/AppContext';
 
 export default function EditTask({ className }) {
-  const TaskId = useParams();
+  const navigate = useNavigate();
+  const { getTask, editTask } = useApp();
+  const [searchParams] = useSearchParams();
+  const taskId = searchParams.get('id') || '1'; // Default to 1 if not defined
+
+  const task = getTask(taskId);
+
   const token = JSON.parse(localStorage.getItem('token'));
-  const [task, setTask] = useState({});
 
   useEffect(() => {
     const data = {
@@ -25,12 +32,24 @@ export default function EditTask({ className }) {
         data
       );
       const task = res.data.Tasks.filter((task) => task.id == TaskId.TaskId);
-      setTask(task[0]);
+      editTask(taskId, task[0].name, task[0].priority);
     };
     fetchTask();
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target).entries());
+    const nameText = formData['name'];
+    const priorityText = formData['priority'];
+    editTask(taskId, nameText, priorityText);
+    navigate('/list');
+  };
+
   const config = {
+    form: {
+      onSubmit: handleSubmit,
+    },
     firstInput: {
       parentDiv: {
         tag: {
@@ -50,8 +69,10 @@ export default function EditTask({ className }) {
         tag: {
           className: '_text-input__input',
           id: 'name',
+          name: 'name',
           autoComplete: 'name',
           type: 'text',
+          defaultValue: task.name,
           defaultValue: task.name,
         },
       },
@@ -80,10 +101,10 @@ export default function EditTask({ className }) {
       },
       input: {
         tag: {
-          id: 'priority',
-          autoComplete: 'priority',
-          type: 'text',
           className: '_text-input__input',
+          id: 'priority',
+          name: 'priority',
+          type: 'text',
           defaultValue: task.priority,
         },
       },
@@ -112,8 +133,8 @@ export default function EditTask({ className }) {
   return (
     <div className={className}>
       <HeaderWithIcon
-        text="Edit Task"
-        leftIcon={DeleteIcon('24px', '24px', TaskId.TaskId)}
+        text={task.name}
+        leftIcon={DeleteIcon('24px', '24px')}
         rightIcon={ReturnIcon('10px', '15px')}
       ></HeaderWithIcon>
       <CustomForm config={config} />
