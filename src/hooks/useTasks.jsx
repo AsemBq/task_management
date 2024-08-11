@@ -40,10 +40,22 @@ export default function useTasks(setDummyState) {
       console.error('Error deleting task:', error);
     }
   }
+
+  async function createTask(taskData) {
+    try {
+      const newTask = await pb.collection('tasks').create(taskData);
+      console.log('Task created successfully:', newTask);
+      return newTask;
+    } catch (error) {
+      console.error('Error creating task:', error);
+    }
+  }
+
   return {
     getTasks,
     getTaskById,
     editTask,
     deleteTask,
+    createTask,
   };
 }

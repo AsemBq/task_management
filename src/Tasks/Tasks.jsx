@@ -16,12 +16,12 @@ const Tasks = () => {
       try {
         const tasksData = await getTasks('1l2ig7vpgbndfwg');
         setAllTasks(tasksData);
+        console.log(tasksData);
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     }
     console.log('fetch');
-    console.log();
 
     fetchTasks();
   }, []);

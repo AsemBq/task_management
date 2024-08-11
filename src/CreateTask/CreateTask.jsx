@@ -6,6 +6,8 @@ import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 
 import { useState } from 'react';
+import useTasks from '../hooks/useTasks';
+import { useTaskContext } from '../Context/TaskContext';
 
 export default function CreateTask({ className }) {
   const navigate = useNavigate();
@@ -15,7 +17,11 @@ export default function CreateTask({ className }) {
     priority: null,
   });
 
-  function handleSubmit(e) {
+  const { createTask } = useTasks();
+
+  const { setAllTasks, tasks } = useTaskContext();
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     const nameText = formData['name'];
@@ -32,10 +38,24 @@ export default function CreateTask({ className }) {
       return;
     }
 
+    const newTask = await createTask({
+      name: nameText,
+      priority: priorityText,
+      user: JSON.parse(localStorage.getItem('user')).userId,
+    });
+
+    setAllTasks([...tasks, newTask]);
+
     navigate('/list');
   }
 
   const config = {
+    error: {
+      text: null,
+      tag: {
+        className: null,
+      },
+    },
     form: {
       onSubmit: handleSubmit,
     },
@@ -111,7 +131,7 @@ export default function CreateTask({ className }) {
           className: '_submit-btn',
         },
         text: {
-          text: 'Creaet',
+          text: 'Create',
         },
       },
     },
