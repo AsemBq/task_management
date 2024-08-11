@@ -25,7 +25,7 @@ export default function EditTask({ className }) {
 
   const { updateTask } = useTaskContext();
 
-  const { getTaskById, editTask } = useTasks();
+  const { getTaskById, editTask, deleteTask } = useTasks();
 
   const [searchParams] = useSearchParams();
   let taskId = searchParams.get('id') || null; // Default to 1 if not defined
@@ -82,8 +82,8 @@ export default function EditTask({ className }) {
     navigate('/list');
   };
 
-  const handleDelete = () => {
-    deleteTask(taskId);
+  const handleDelete = async () => {
+    await deleteTask(taskId);
     navigate('/list');
   };
 

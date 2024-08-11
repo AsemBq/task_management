@@ -32,10 +32,18 @@ export default function useTasks(setDummyState) {
       console.error('Error Editing task:', error);
     }
   }
-
+  async function deleteTask(taskId) {
+    try {
+      await pb.collection('tasks').delete(taskId);
+      console.log(`Task with ID ${taskId} got deleted successfully.`);
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
+  }
   return {
     getTasks,
     getTaskById,
     editTask,
+    deleteTask,
   };
 }
