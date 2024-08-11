@@ -1,7 +1,6 @@
 import './CreateTask.css';
 
 import { useNavigate } from 'react-router-dom';
-import { useApp } from '../Context/AppContext';
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
@@ -9,7 +8,6 @@ import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
 import { useState } from 'react';
 
 export default function CreateTask({ className }) {
-  const { addTask } = useApp();
   const navigate = useNavigate();
 
   const [taskError, setTaskError] = useState({
@@ -34,7 +32,6 @@ export default function CreateTask({ className }) {
       return;
     }
 
-    addTask(nameText, priorityText);
     navigate('/list');
   }
 

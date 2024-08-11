@@ -3,13 +3,10 @@ import './LogOut.css';
 import LogOut from './logout.svg';
 
 import { NavLink } from 'react-router-dom';
-import { useApp } from '../Context/AppContext';
 
 export default function LogOutIcon(width, height) {
-  const { appInfo, logUserOut } = useApp();
-
   const handleLogout = () => {
-    logUserOut();
+    // logUserOut();
   };
 
   return (

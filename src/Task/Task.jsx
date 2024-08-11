@@ -1,19 +1,15 @@
 import './Task.css';
 
 import { useNavigate } from 'react-router-dom';
-import { useApp } from '../Context/AppContext.jsx';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Task = ({ listId, name, isDone }) => {
   const navigate = useNavigate();
 
-  const { markTaskAsDoneOrUndone } = useApp();
-
   const [isChecked, setIsChecked] = useState(isDone);
 
   const handleChange = () => {
-    markTaskAsDoneOrUndone(listId, !isChecked);
     setIsChecked(!isChecked);
   };
 
