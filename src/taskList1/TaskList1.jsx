@@ -6,15 +6,14 @@ import RightArrowIcon from '../Icon/RightArrowIcon/RightArrowIcon.jsx';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon.jsx';
 import Tasks from '../Tasks/Tasks.jsx';
 import AddTaskButton from '../AddTaskButton/AddTaskButton.jsx';
-import { useApp } from '../Context/AppContext.jsx';
+import { useUser } from '../Context/UserContext.jsx';
 
 const TaskList1 = ({ className }) => {
-  const { loggedInUser } = useApp();
-
+  const { username } = useUser();
   return (
     <div className={className}>
       <HeaderWithIcon
-        text={`${loggedInUser}'s Tasks`}
+        text={`${username}'s Tasks`}
         leftIcon={LogOutIcon('24px', '24px')}
       />
       <div className="box-body">
