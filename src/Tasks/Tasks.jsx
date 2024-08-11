@@ -1,24 +1,34 @@
 import './Tasks.css';
+
 import Task from '../Task/Task.jsx';
 import useTasks from '../hooks/useTasks.jsx';
-import { useEffect, useState } from 'react';
+import { useTaskContext } from '../Context/TaskContext.jsx';
+
+import { useEffect } from 'react';
 
 const Tasks = () => {
+  const { tasks, setAllTasks } = useTaskContext();
+
   const { getTasks } = useTasks();
-  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     async function fetchTasks() {
       try {
         const tasksData = await getTasks('1l2ig7vpgbndfwg');
-        setTasks(tasksData);
+        setAllTasks(tasksData);
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     }
+    console.log('fetch');
+    console.log();
 
     fetchTasks();
   }, []);
+
+  if (!tasks) {
+    return <div>Loading...</div>; // Show a loading state or nothing while tasks are undefined
+  }
 
   const tasksList = tasks.map((item) => {
     return (
@@ -30,7 +40,6 @@ const Tasks = () => {
       />
     );
   });
-
   return <ul className="tasks">{tasksList}</ul>;
 };
 

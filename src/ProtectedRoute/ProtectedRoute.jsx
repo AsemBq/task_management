@@ -10,9 +10,6 @@ export default function ProtectedRoute({ nav, reverse, children }) {
   if (!reverse) {
     if (!username) return nav;
 
-    if (location.pathname === '/edit' && !id) {
-      return <Navigate to="/edit?id=0" replace />;
-    }
     return children;
   }
 

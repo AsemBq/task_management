@@ -3,12 +3,7 @@ import './CustomForm.css';
 import TextInput from '../TextInput/TextInput';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
-import { useState } from 'react';
-import { useApp } from '../Context/AppContext';
-
 export default function CustomForm({ config }) {
-  const { logUserIn, appInfo } = useApp();
-
   return (
     <>
       {config['error']['text'] && (

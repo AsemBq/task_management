@@ -1,6 +1,6 @@
 import pb from '../lib/Pocketbase';
 
-export default function useTasks() {
+export default function useTasks(setDummyState) {
   async function getTasks(userId, sort = '-created') {
     try {
       const tasks = await pb.collection('tasks').getList(1, 3, {
@@ -11,7 +11,31 @@ export default function useTasks() {
       console.error('Error fetching tasks:', error);
     }
   }
+  async function getTaskById(taskId) {
+    console.log('GET task by ID');
+
+    try {
+      const task = await pb.collection('tasks').getOne(taskId);
+      console.log(`Fetched Task: ${task.name}`);
+      return task;
+    } catch (error) {
+      console.error('Error fetching task:', error);
+    }
+  }
+
+  async function editTask(taskId, taskData) {
+    try {
+      const editedTask = await pb.collection('tasks').update(taskId, taskData);
+      console.log(`Edited Task: ${editedTask.name}`);
+      return editedTask;
+    } catch (error) {
+      console.error('Error Editing task:', error);
+    }
+  }
+
   return {
     getTasks,
+    getTaskById,
+    editTask,
   };
 }

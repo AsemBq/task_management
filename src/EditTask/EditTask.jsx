@@ -4,40 +4,59 @@ import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
+import useTasks from '../hooks/useTasks';
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-
-import { useApp } from '../Context/AppContext';
+import { useEffect, useState } from 'react';
+import { useTaskContext } from '../Context/TaskContext';
 
 export default function EditTask({ className }) {
   const navigate = useNavigate();
-  const { getTask, editTask, deleteTask } = useApp();
+
+  const [taskError, setTaskError] = useState({
+    name: '',
+    priority: '',
+  });
+
+  const [task, setTask] = useState({
+    name: null,
+    priority: null,
+  });
+
+  const { updateTask } = useTaskContext();
+
+  const { getTaskById, editTask } = useTasks();
+
   const [searchParams] = useSearchParams();
-  const taskId = searchParams.get('id') || '1'; // Default to 1 if not defined
-
-  const task = getTask(taskId);
-
-  const token = JSON.parse(localStorage.getItem('token'));
+  let taskId = searchParams.get('id') || null; // Default to 1 if not defined
 
   useEffect(() => {
-    const data = {
-      token: token,
-    };
-    const fetchTask = async () => {
-      const res = await axios.post(
-        'http://localhost:8000/user/user_tasks',
-        data
-      );
-      const task = res.data.Tasks.filter((task) => task.id == TaskId.TaskId);
-      editTask(taskId, task[0].name, task[0].priority);
-    };
-    fetchTask();
-  }, []);
+    if (!taskId) {
+      navigate('/list');
+    }
+  }, [taskId]);
+
+  useEffect(() => {
+    async function getTask() {
+      try {
+        if (!taskId) {
+          return;
+        }
+        const tasksData = await getTaskById(taskId);
+        setTask(tasksData);
+        taskId = '';
+        console.log('task data: ', tasksData);
+      } catch (error) {
+        console.error('Error fetching task:', error);
+      }
+    }
+    getTask();
+  }, [taskId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('submit');
+
     const formData = Object.fromEntries(new FormData(e.target).entries());
     const nameText = formData['name'];
     const priorityText = formData['priority'];
@@ -46,6 +65,7 @@ export default function EditTask({ className }) {
       name: !nameText ? "Name field can't be empty" : null,
       priority: !priorityText ? "Priority field can't be empty" : null,
     };
+    console.log('submit 2');
 
     setTaskError(errors);
 
@@ -53,7 +73,12 @@ export default function EditTask({ className }) {
       return;
     }
 
-    editTask(taskId, nameText, priorityText);
+    const updatedTask = editTask(taskId, {
+      name: nameText,
+      priority: priorityText,
+    });
+
+    updateTask(updatedTask);
     navigate('/list');
   };
 
@@ -63,6 +88,10 @@ export default function EditTask({ className }) {
   };
 
   const config = {
+    error: {
+      text: null,
+      tag: { className: null },
+    },
     form: {
       onSubmit: handleSubmit,
     },
@@ -89,7 +118,6 @@ export default function EditTask({ className }) {
           name: 'name',
           autoComplete: 'name',
           type: 'text',
-          defaultValue: task.name,
           defaultValue: task.name,
         },
       },
