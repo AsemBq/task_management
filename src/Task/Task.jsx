@@ -3,13 +3,17 @@ import './Task.css';
 import { useNavigate } from 'react-router-dom';
 
 import { useState } from 'react';
+import useTasks from '../hooks/useTasks';
 
 const Task = ({ listId, name, isDone }) => {
   const navigate = useNavigate();
 
   const [isChecked, setIsChecked] = useState(isDone);
 
-  const handleChange = () => {
+  const { editTask, getTaskById } = useTasks();
+
+  const handleChange = async () => {
+    await editTask(listId, { ...getTaskById(listId), done: !isChecked });
     setIsChecked(!isChecked);
   };
 
