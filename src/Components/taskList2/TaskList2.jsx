@@ -25,7 +25,6 @@ const TaskList2=({className})=>{
     const [isFiltered,setIsFiltered]=useState(false);
     const [filtered,setFiltered]=useState([]);
     let currentTasks
-    console.log(tasks)
 
     if (!isFiltered){
         currentTasks=tasks.slice(indexOfFirstTask,indexOfLastTask)
@@ -42,12 +41,10 @@ const TaskList2=({className})=>{
                 const tasksData = await getTasks(localStorage.getItem("token"));
                 setTasks(tasksData)
                 setLoading(false);
-                console.log(tasksData);
             } catch (error) {
                 console.error('Error fetching tasks:', error);
             }
         }
-        console.log('fetch');
 
         fetchTasks();
     }, []);

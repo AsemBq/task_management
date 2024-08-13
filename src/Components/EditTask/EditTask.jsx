@@ -17,7 +17,6 @@ export default function EditTask({ className }) {
   useEffect(() => {
     const fetchTask=async () => {
       const task= await getTaskById(TaskId.TaskId)
-      console.log(task)
       setTask(task)
     }
     fetchTask();

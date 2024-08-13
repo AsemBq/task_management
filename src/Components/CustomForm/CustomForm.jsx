@@ -62,55 +62,13 @@ export default function CustomForm({ config }) {
            console.log('error: ', e);
          }
 
-         // const UserLogin=async ()=>{
-         //   const res=await axios.post('http://localhost:8000/user/login',data);
-         //   if (res.data.success === true){
-         //     context.setIsUser(true);
-         //     localStorage.setItem('token',JSON.stringify(res.data.Token))
-         //     localStorage.setItem('UserName',JSON.stringify(FirstInput.current.value))
-         //     Swal.fire({
-         //       position: "center",
-         //       icon: "success",
-         //       title: "You Logged in Successfully!",
-         //       background:'#2b2930',
-         //       showConfirmButton: true,
-         //       timer: 1200,
-         //       customClass:{
-         //         title:'Custom_tittle_alarm',
-         //         popup:'Custom_container_alarm',
-         //       }
-         //     });
-         //   }else {
-         //     if (res.data.success === false){
-         //       Swal.fire({
-         //         position: "center",
-         //         icon: "error",
-         //         title: "Username or Password is wrong",
-         //         background:'#2b2930',
-         //         showConfirmButton: true,
-         //         timer: 1200,
-         //         customClass:{
-         //           title:'Custom_tittle_alarm',
-         //           popup:'Custom_container_alarm',
-         //         }
-         //       });
-         //     }
-         //   }
-         // }
-         // UserLogin()
       };
       break;
     }
     case 'Edit':{
       handleSubmit = (e) => {
         e.preventDefault();
-        // const data={
-        //   'token':token,
-        //   'id': parseInt(Taskid.TaskId),
-        //   'name':FirstInput.current.value,
-        //   'priority':SecondInput.current.value,
-        //   'IsDone':config['task'].IsDone,
-        // }
+
         const updatedTask = editTask(Taskid.TaskId, {
           name: FirstInput.current.value,
           priority: SecondInput.current.value,
@@ -133,7 +91,6 @@ export default function CustomForm({ config }) {
       break
     }
     case 'Creat':{
-      console.log('work')
       handleSubmit = async (e) => {
         e.preventDefault();
         const newTask = await createTask({
