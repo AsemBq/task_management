@@ -1,7 +1,5 @@
-import './EraseIcon.css';
-
 import EraseSVG from './Erase.svg';
-
+import './EraseIcon.css';
 export default function EraseIcon(width, height) {
   return (
     <img

@@ -1,68 +1,12 @@
-import './Login.css';
-
 import CustomForm from '../CustomForm/CustomForm';
 import EraseIcon from '../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
-import useLogin from '../hooks/useLogin';
-import { useUser } from '../Context/UserContext';
-
-import { useState } from 'react';
+import './Login.css';
 
 export default function Login({ className }) {
-  const { logUserIn } = useUser();
-
-  const [loginError, setLoginError] = useState({
-    username: null,
-    password: null,
-    wrongUsernameOrPassword: null,
-  });
-
-  const handleSubmit = async (e) => {
-    console.log('handle submit');
-
-    e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target).entries());
-    const usernameText = formData['username'];
-    const passwordText = formData['password'];
-
-    const errors = {
-      username: !usernameText ? "username field can't be empty" : null,
-      password: !passwordText ? "password field can't be empty" : null,
-    };
-
-    setLoginError(errors);
-
-    if (errors.username || errors.password) {
-      return;
-    }
-    try {
-      const login = useLogin();
-      const { record, token } = await login(usernameText, passwordText);
-      const { name, username, id } = record;
-      logUserIn(name, username, token, id);
-    } catch (e) {
-      console.log('error: ', e);
-      setLoginError((prev) => {
-        const newError = { ...prev };
-        newError['wrongUsernameOrPassword'] = 'Wrong useranme or password';
-        return newError;
-      });
-    }
-  };
-
   const config = {
-    error: {
-      tag: {
-        className: null,
-      },
-      text: loginError['wrongUsernameOrPassword'],
-    },
-    form: {
-      onSubmit: handleSubmit,
-    },
     firstInput: {
-      error: loginError.username,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -80,7 +24,6 @@ export default function Login({ className }) {
       input: {
         tag: {
           className: '_text-input__input',
-          name: 'username',
           id: 'username',
           autoComplete: 'username',
           type: 'text',
@@ -97,7 +40,6 @@ export default function Login({ className }) {
       },
     },
     secondInput: {
-      error: loginError.password,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -114,11 +56,10 @@ export default function Login({ className }) {
       },
       input: {
         tag: {
-          className: '_text-input__input',
           id: 'password',
-          name: 'password',
           autoComplete: 'password',
           type: 'password',
+          className: '_text-input__input',
         },
       },
       icon: {
@@ -135,13 +76,14 @@ export default function Login({ className }) {
       button: {
         tag: {
           className: '_submit-btn',
+          // onClick: handleClick,
         },
         text: {
           text: 'Login',
         },
       },
     },
-    from: 'Login',
+    from:'Login'
   };
   return (
     <div className={className}>

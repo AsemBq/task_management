@@ -1,46 +1,22 @@
-import './Tasks.css';
-
-import Task from '../Task/Task.jsx';
-import useTasks from '../hooks/useTasks.jsx';
-import { useTaskContext } from '../Context/TaskContext.jsx';
-
-import { useEffect } from 'react';
-
-const Tasks = () => {
-  const { tasks, setAllTasks } = useTaskContext();
-
-  const { getTasks } = useTasks();
-
-  useEffect(() => {
-    async function fetchTasks() {
-      try {
-        const tasksData = await getTasks('1l2ig7vpgbndfwg');
-        setAllTasks(tasksData);
-        console.log(tasksData);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
+import './Tasks.css'
+import Task from "../Task/Task.jsx";
+import EmptyTaskList from "../EmptyTaskList/EmptyTaskList.jsx";
+const Tasks=({tasks,loading})=>{
+    if(loading){
+        return <h2>Loading...</h2>;
     }
-    console.log('fetch');
-
-    fetchTasks();
-  }, []);
-
-  if (!tasks) {
-    return <div>Loading...</div>; // Show a loading state or nothing while tasks are undefined
-  }
-
-  const tasksList = tasks.map((item) => {
     return (
-      <Task
-        key={item.name}
-        listId={item.id}
-        name={item.name}
-        isDone={item.done}
-      />
-    );
-  });
-  return <ul className="tasks">{tasksList}</ul>;
-};
+        <ul className='tasks'>
+            {tasks.length > 0 ? tasks.map(t=>(
+                <Task
+                    task={t}
+                    key={t.id}
+                />
+            )):
+            <EmptyTaskList/>
+            }
+        </ul>
+    )
+}
 
 export default Tasks;

@@ -3,7 +3,7 @@ import pb from '../lib/Pocketbase';
 export default function useTasks(setDummyState) {
   async function getTasks(userId, sort = '-created') {
     try {
-      const tasks = await pb.collection('tasks').getList(1, 3, {
+      const tasks = await pb.collection('tasks').getList(1, 9999, {
         sort: sort,
       });
       return tasks.items;
@@ -25,7 +25,8 @@ export default function useTasks(setDummyState) {
 
   async function editTask(taskId, taskData) {
     try {
-      const editedTask = await pb.collection('tasks').update(taskId, taskData);
+      console.log(taskData)
+      const editedTask = await pb.collection('tasks').update(taskId,taskData);
       console.log(`Edited Task: ${editedTask.name}`);
       return editedTask;
     } catch (error) {

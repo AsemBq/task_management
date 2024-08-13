@@ -1,9 +1,6 @@
-import './ReturnIcon.css';
-
 import ReturnSVG from './Return.svg';
-
-import { useNavigate } from 'react-router-dom';
-
+import './ReturnIcon.css';
+import {useNavigate} from "react-router-dom";
 export default function ReturnIcon(width, height) {
   const navigate = useNavigate();
   return (
@@ -13,7 +10,7 @@ export default function ReturnIcon(width, height) {
       alt="Return Icon"
       width={width}
       height={height}
-      onClick={() => navigate('/list')}
+      onClick={()=>navigate(-1)}
     ></img>
   );
 }

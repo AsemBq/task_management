@@ -1,7 +1,7 @@
 import './TextInput.css';
-import { forwardRef, useRef } from 'react';
+import {forwardRef, useRef} from "react";
 
-const TextInput = ({ ...config }, ref) => {
+const TextInput=({ ...config },ref)=>{
   return (
     <div {...config['parentDiv']['tag']}>
       <label {...config['label']['tag']}> {...config['label']['text']}</label>
@@ -11,6 +11,6 @@ const TextInput = ({ ...config }, ref) => {
       </div>
     </div>
   );
-};
+}
 
 export default forwardRef(TextInput);

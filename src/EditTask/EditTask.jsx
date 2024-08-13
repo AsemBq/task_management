@@ -1,102 +1,30 @@
-import './EditTask.css';
-
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
 import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
-import useTasks from '../hooks/useTasks';
-
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useTaskContext } from '../Context/TaskContext';
+import useTasks from "../hooks/useTasks.jsx";
+import './EditTask.css';
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function EditTask({ className }) {
-  const navigate = useNavigate();
-
-  const [taskError, setTaskError] = useState({
-    name: '',
-    priority: '',
-  });
-
-  const [task, setTask] = useState({
-    name: null,
-    priority: null,
-  });
-
-  const { updateTask } = useTaskContext();
-
-  const { getTaskById, editTask, deleteTask } = useTasks();
-
-  const [searchParams] = useSearchParams();
-  let taskId = searchParams.get('id') || null; // Default to 1 if not defined
+  const TaskId=useParams()
+  const token=JSON.parse(localStorage.getItem("token"));
+  const [task,setTask]=useState({});
+  const {getTaskById}=useTasks()
 
   useEffect(() => {
-    if (!taskId) {
-      navigate('/list');
+    const fetchTask=async () => {
+      const task= await getTaskById(TaskId.TaskId)
+      console.log(task)
+      setTask(task)
     }
-  }, [taskId]);
-
-  useEffect(() => {
-    async function getTask() {
-      try {
-        if (!taskId) {
-          return;
-        }
-        const tasksData = await getTaskById(taskId);
-        setTask(tasksData);
-        taskId = '';
-        console.log('task data: ', tasksData);
-      } catch (error) {
-        console.error('Error fetching task:', error);
-      }
-    }
-    getTask();
-  }, [taskId]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submit');
-
-    const formData = Object.fromEntries(new FormData(e.target).entries());
-    const nameText = formData['name'];
-    const priorityText = formData['priority'];
-
-    const errors = {
-      name: !nameText ? "Name field can't be empty" : null,
-      priority: !priorityText ? "Priority field can't be empty" : null,
-    };
-    console.log('submit 2');
-
-    setTaskError(errors);
-
-    if (errors.name || errors.priority) {
-      return;
-    }
-
-    const updatedTask = editTask(taskId, {
-      name: nameText,
-      priority: priorityText,
-    });
-
-    updateTask(updatedTask);
-    navigate('/list');
-  };
-
-  const handleDelete = async () => {
-    await deleteTask(taskId);
-    navigate('/list');
-  };
+    fetchTask();
+  }, []);
 
   const config = {
-    error: {
-      text: null,
-      tag: { className: null },
-    },
-    form: {
-      onSubmit: handleSubmit,
-    },
     firstInput: {
-      error: taskError.name,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -115,7 +43,6 @@ export default function EditTask({ className }) {
         tag: {
           className: '_text-input__input',
           id: 'name',
-          name: 'name',
           autoComplete: 'name',
           type: 'text',
           defaultValue: task.name,
@@ -130,7 +57,6 @@ export default function EditTask({ className }) {
       },
     },
     secondInput: {
-      error: taskError.priority,
       parentDiv: {
         tag: {
           className: '_text-input__form-group',
@@ -147,10 +73,10 @@ export default function EditTask({ className }) {
       },
       input: {
         tag: {
-          className: '_text-input__input',
           id: 'priority',
-          name: 'priority',
+          autoComplete: 'priority',
           type: 'text',
+          className: '_text-input__input',
           defaultValue: task.priority,
         },
       },
@@ -172,18 +98,18 @@ export default function EditTask({ className }) {
         },
       },
     },
-    from: 'Edit',
-    task: task,
+    from:'Edit',
+    task:task
   };
 
   return (
     <div className={className}>
       <HeaderWithIcon
-        text={task.name}
-        leftIcon={DeleteIcon('24px', '24px', handleDelete)}
+        text="Edit Task"
+        leftIcon={DeleteIcon('24px', '24px',TaskId.TaskId)}
         rightIcon={ReturnIcon('10px', '15px')}
       ></HeaderWithIcon>
-      <CustomForm config={config} />
+      <CustomForm config={config}  />
     </div>
   );
 }
