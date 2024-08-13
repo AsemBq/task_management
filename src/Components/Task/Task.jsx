@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {NavLink} from "react-router-dom";
-import useTasks from '../hooks/useTasks';
+import useTasks from '../../hooks/useTasks.jsx';
 import axios from "axios";
 
 const Task=({task})=>{

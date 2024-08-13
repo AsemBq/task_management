@@ -2,7 +2,7 @@ import LogOut from './logout.svg';
 import './LogOut.css'
 import {NavLink} from "react-router-dom";
 import {useContext} from "react";
-import {UserContext} from "../Wrapper/MainContext.jsx";
+import {UserContext} from "../../Wrapper/MainContext.jsx";
 import pb from "../lib/Pocketbase.js";
 export default function LogOutIcon(width, height) {
     const context=useContext(UserContext);

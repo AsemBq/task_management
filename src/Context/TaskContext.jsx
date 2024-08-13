@@ -8,7 +8,6 @@ export const TaskProvider = ({ children }) => {
   ]);
 
   const updateTask = (updatedTask) => {
-    console.log('update Task', updatedTask);
 
     setTasks((prev) => {
       prev.map((task) => (task.id == updatedTask.id ? updatedTask : task));

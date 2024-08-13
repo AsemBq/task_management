@@ -1,13 +1,13 @@
 import TextInput from '../TextInput/TextInput';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import {useContext, useRef} from 'react';
-import { UserContext } from '../Wrapper/MainContext.jsx';
-import useLogin from '../hooks/useLogin';
+import { UserContext } from '../../Wrapper/MainContext.jsx';
+import useLogin from '../../hooks/useLogin';
 import './CustomForm.css';
 import axios from "axios";
 import Swal from 'sweetalert2'
 import {useNavigate, useParams} from "react-router-dom";
-import useTasks from '../hooks/useTasks';
+import useTasks from '../../hooks/useTasks';
 
 export default function CustomForm({ config }) {
   const context = useContext(UserContext);

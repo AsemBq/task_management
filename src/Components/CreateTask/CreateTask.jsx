@@ -1,6 +1,6 @@
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
+import ReturnIcon from '../../Icon/ReturnIcon/ReturnIcon';
 
 import './CreateTask.css';
 

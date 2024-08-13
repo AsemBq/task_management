@@ -1,4 +1,4 @@
-import pb from '../lib/Pocketbase';
+import pb from '../Components/lib/Pocketbase';
 
 export default function useLogin(port = '8090') {
   return async function loginUser(username, password) {
@@ -6,7 +6,6 @@ export default function useLogin(port = '8090') {
       const authData = await pb
         .collection('users')
         .authWithPassword(username, password);
-      console.log('logged in successfully');
       return authData;
     } catch (error) {
       console.error('Error logging in:', error);

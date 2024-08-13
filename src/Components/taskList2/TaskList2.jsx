@@ -1,12 +1,11 @@
 import './TaskList2.css'
 import LogOutIcon from "../LogOut/LogOut.jsx";
-import FilterIcon from "../Icon/FilterIcon/FilterIcon.jsx";
+import FilterIcon from "../../Icon/FilterIcon/FilterIcon.jsx";
 import HeaderWithIcon from "../HeaderWithIcon/HeaderWithIcon.jsx";
 import Tasks from "../Tasks/Tasks.jsx";
-import AddTaskButton from "../AddTaskButton/AddTaskButton.jsx";
+import AddTaskButton from "../../AddTaskButton/AddTaskButton.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
-import EmptyTaskList from "../EmptyTaskList/EmptyTaskList.jsx";
-import useTasks from "../hooks/useTasks.jsx";
+import useTasks from "../../hooks/useTasks.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import task from "../Task/Task.jsx";

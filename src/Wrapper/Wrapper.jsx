@@ -1,11 +1,9 @@
 import WrapperItem from '../WrapperItem/WrapperItem.jsx';
-import TaskList1 from '../taskList1/TaskList1';
-import TaskList2 from '../taskList2/TaskList2';
-import EmptyTaskList from '../EmptyTaskList/EmptyTaskList.jsx';
-import CreateTask from '../CreateTask/CreateTask.jsx';
-import Login from '../Login/Login.jsx';
+import TaskList2 from '../Components/taskList2/TaskList2';
+import CreateTask from '../Components/CreateTask/CreateTask.jsx';
+import Login from '../Components/Login/Login.jsx';
 import './Wrapper.css';
-import EditTask from '../EditTask/EditTask.jsx';
+import EditTask from '../Components/EditTask/EditTask.jsx';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserContext } from './MainContext.jsx';

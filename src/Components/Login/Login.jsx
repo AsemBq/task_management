@@ -1,7 +1,7 @@
 import CustomForm from '../CustomForm/CustomForm';
-import EraseIcon from '../Icon/EraseIcon/EraseIcon';
+import EraseIcon from '../../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import VisibilityIcon from '../Icon/VisibilityIcon/VisibilityIcon';
+import VisibilityIcon from '../../Icon/VisibilityIcon/VisibilityIcon';
 import './Login.css';
 
 export default function Login({ className }) {

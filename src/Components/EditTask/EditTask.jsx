@@ -1,8 +1,8 @@
 import CustomForm from '../CustomForm/CustomForm';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import DeleteIcon from '../Icon/DeleteIcon/DeleteIcon';
-import ReturnIcon from '../Icon/ReturnIcon/ReturnIcon';
-import useTasks from "../hooks/useTasks.jsx";
+import DeleteIcon from '../../Icon/DeleteIcon/DeleteIcon';
+import ReturnIcon from '../../Icon/ReturnIcon/ReturnIcon';
+import useTasks from "../../hooks/useTasks.jsx";
 import './EditTask.css';
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";

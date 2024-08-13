@@ -1,4 +1,4 @@
-import pb from '../lib/Pocketbase';
+import pb from '../Components/lib/Pocketbase';
 
 export default function useTasks(setDummyState) {
   async function getTasks(userId, sort = '-created') {

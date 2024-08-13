@@ -1,6 +1,6 @@
 import './Pagination.css'
-import LeftArrowIcon from "../Icon/LeftArrowIcon/LeftArrowIcon.jsx";
-import RightArrowIcon from "../Icon/RightArrowIcon/RightArrowIcon.jsx";
+import LeftArrowIcon from "../../Icon/LeftArrowIcon/LeftArrowIcon.jsx";
+import RightArrowIcon from "../../Icon/RightArrowIcon/RightArrowIcon.jsx";
 
 const Pagination = ({taskPerPage,totalTasks,currentPage,setCurrentPage,loading}) => {
     if (loading || totalTasks==0){
