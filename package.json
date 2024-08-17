@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
     "@sweetalert2/theme-dark": "^5.0.17",
     "axios": "^1.7.3",
     "pocketbase": "^0.21.4",
