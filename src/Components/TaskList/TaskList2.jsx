@@ -3,7 +3,7 @@ import './TaskList.css';
 import { useUser } from '../../Context/UserContext';
 import FilterIcon from '../../Icon/FilterIcon/FilterIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import LogoutIcon from '../LogoutIcon/LogoutIcon.jsx';
+import LogoutIcon from '../../Icon/LogoutIcon/LogoutIcon.jsx';
 import Tasks from '../Tasks/Tasks';
 import AddTaskButton from '../AddTaskButton/AddTaskButton';
 
