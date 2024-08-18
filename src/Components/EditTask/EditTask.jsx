@@ -23,8 +23,6 @@ export default function EditTask({ className }) {
     priority: null,
   });
 
-  const { updateTask } = useTaskContext();
-
   const { getTaskById, editTask, deleteTask } = useTasks();
 
   const [searchParams] = useSearchParams();
@@ -53,9 +51,8 @@ export default function EditTask({ className }) {
     getTask();
   }, [taskId]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submit');
 
     const formData = Object.fromEntries(new FormData(e.target).entries());
     const nameText = formData['name'];
@@ -65,7 +62,6 @@ export default function EditTask({ className }) {
       name: !nameText ? "Name field can't be empty" : null,
       priority: !priorityText ? "Priority field can't be empty" : null,
     };
-    console.log('submit 2');
 
     setTaskError(errors);
 
@@ -73,12 +69,11 @@ export default function EditTask({ className }) {
       return;
     }
 
-    const updatedTask = editTask(taskId, {
+    const updatedTask = await editTask(taskId, {
       name: nameText,
       priority: priorityText,
     });
 
-    updateTask(updatedTask);
     navigate('/list');
   };
 
