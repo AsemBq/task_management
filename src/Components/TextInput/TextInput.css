@@ -47,3 +47,14 @@
   transform: translateY(-50%);
   right: 0.5rem;
 }
+
+._text-input__form-group.erroneous_input {
+  border: 1px solid red;
+}
+._text-input__form-group .error-message {
+  color: red;
+  display: block;
+  text-align: left;
+  font-size: 0.75rem;
+  padding-top: 0.7em;
+}

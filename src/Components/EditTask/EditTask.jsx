@@ -8,7 +8,6 @@ import useTasks from '../../hooks/useTasks';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useTaskContext } from '../../Context/TaskContext';
 
 export default function EditTask({ className }) {
   const navigate = useNavigate();

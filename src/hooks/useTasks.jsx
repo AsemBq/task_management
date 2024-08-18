@@ -12,8 +12,6 @@ export default function useTasks() {
     }
   }
   async function getTaskById(taskId) {
-    console.log('GET task by ID');
-
     try {
       const task = await pb.collection('tasks').getOne(taskId);
       console.log(`Fetched Task: ${task.name}`);
