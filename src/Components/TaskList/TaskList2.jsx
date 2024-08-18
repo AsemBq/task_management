@@ -51,7 +51,7 @@ export default function TaskList2({ className }) {
         leftIcon={LogOutIcon('24px', '24px')}
       />
       <div className="box-body">
-        {tasks.length > 0 ? (
+        {tasks.length > 0 || (tasks.length == 0 && isFiltered) ? (
           <div className="filter-icon-parent">
             {isFiltered ? CheckIcon('16px', '16px') : <></>}
             {FilterIcon('24px', '24px', hanldeFilterClick)}
