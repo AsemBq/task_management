@@ -1,5 +1,5 @@
 import './Login.css';
-
+import React, { useState } from 'react';
 import CustomForm from '../CustomForm/CustomForm';
 import EraseIcon from '../../Icon/EraseIcon/EraseIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
@@ -7,10 +7,22 @@ import VisibilityIcon from '../../Icon/VisibilityIcon/VisibilityIcon';
 import useLogin from '../../hooks/useLogin';
 import { useUser } from '../../Context/UserContext';
 
-import { useState } from 'react';
-
 export default function Login({ className }) {
   const { logUserIn } = useUser();
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordType, setPasswordType] = useState('password');
+
+  const handleEraseClick = () => {
+    setUsername(''); // Clears the username input field
+  };
+
+  const handleVisibilityClick = () => {
+    setPasswordType((prevType) =>
+      prevType === 'password' ? 'text' : 'password'
+    ); // Toggles password visibility
+  };
 
   const [loginError, setLoginError] = useState({
     username: null,
@@ -19,8 +31,6 @@ export default function Login({ className }) {
   });
 
   const handleSubmit = async (e) => {
-    console.log('handle submit');
-
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
     const usernameText = formData['username'];
@@ -43,11 +53,10 @@ export default function Login({ className }) {
       logUserIn(name, username, token, id);
     } catch (e) {
       console.log('error: ', e);
-      setLoginError((prev) => {
-        const newError = { ...prev };
-        newError['wrongUsernameOrPassword'] = 'Wrong useranme or password';
-        return newError;
-      });
+      setLoginError((prev) => ({
+        ...prev,
+        wrongUsernameOrPassword: 'Wrong username or password',
+      }));
     }
   };
 
@@ -83,7 +92,9 @@ export default function Login({ className }) {
           name: 'username',
           id: 'username',
           autoComplete: 'username',
+          value: username,
           type: 'text',
+          onChange: (e) => setUsername(e.target.value),
         },
       },
       icon: {
@@ -92,6 +103,7 @@ export default function Login({ className }) {
           style: {
             right: '0.05rem',
           },
+          onClick: handleEraseClick,
         },
         icon: EraseIcon('45px', '45px'),
       },
@@ -118,7 +130,9 @@ export default function Login({ className }) {
           id: 'password',
           name: 'password',
           autoComplete: 'password',
-          type: 'password',
+          value: password,
+          type: passwordType, // Controlled type for password visibility
+          onChange: (e) => setPassword(e.target.value),
         },
       },
       icon: {
@@ -127,6 +141,7 @@ export default function Login({ className }) {
           style: {
             right: '0.8rem',
           },
+          onClick: handleVisibilityClick,
         },
         icon: VisibilityIcon('23px', '23px'),
       },
@@ -143,6 +158,7 @@ export default function Login({ className }) {
     },
     from: 'Login',
   };
+
   return (
     <div className={className}>
       <HeaderWithIcon text="Task Manager"></HeaderWithIcon>

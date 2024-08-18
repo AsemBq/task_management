@@ -7,9 +7,7 @@ export default function CustomForm({ config }) {
   return (
     <>
       {config['error']['text'] && (
-        <h3
-          className={`_custom-form__error ${config['error']['tag']['classNmae']}}`}
-        >
+        <h3 className={`_custom-form__error ${config.error.tag.classNmae}}`}>
           {config['error']['text']}
         </h3>
       )}
