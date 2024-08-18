@@ -1,4 +1,4 @@
-import pb from '../Components/lib/Pocketbase';
+import pb from '../lib/Pocketbase';
 
 export default function useLogin(port = '8090') {
   return async function loginUser(username, password) {

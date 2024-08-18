@@ -3,12 +3,9 @@ import { createContext, useContext, useState } from 'react';
 const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([
-    { name: null, priority: null, done: false },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const updateTask = (updatedTask) => {
-
     setTasks((prev) => {
       prev.map((task) => (task.id == updatedTask.id ? updatedTask : task));
     });

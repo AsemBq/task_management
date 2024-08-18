@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import pb from '../lib/Pocketbase';
-
 const initState = {
   name: null,
   username: null,

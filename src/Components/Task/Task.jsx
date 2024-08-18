@@ -1,31 +1,33 @@
-import {useState} from "react";
-import {NavLink} from "react-router-dom";
-import useTasks from '../../hooks/useTasks.jsx';
-import axios from "axios";
+import './Task.css';
 
-const Task=({task})=>{
-    const [Ischeck,setIscheck]=useState(task.done);
-    const token=JSON.parse(localStorage.getItem("token"));
-    const {editTask}=useTasks()
-    const ClickHandler=()=> {
-        const updatedTask = editTask(task.id, {
-            name: task.name,
-            priority: task.priority,
-            done:!Ischeck
-        });
-        setIscheck(!Ischeck)
-    }
-    return (
-        <li className='task'>
-            <div className='left'><span className='circle'>A</span> <NavLink className={'text'}
-                to={`/edit/${task.id}`}><span> {task.name.slice(0,20)}</span></NavLink>
-            </div>
-            <label className="custom-checkbox">
-                <input type="checkbox" checked={Ischeck} onChange={ClickHandler}/>
-                <span className="checkmark"></span>
-            </label></li>
-    )
-}
+import { useNavigate } from 'react-router-dom';
 
+import { useState } from 'react';
+
+const Task = ({ listId, name, isDone }) => {
+  const navigate = useNavigate();
+
+  const [isChecked, setIsChecked] = useState(isDone);
+
+  const handleChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const handleClick = () => {
+    navigate(`/edit?id=${listId}`);
+  };
+
+  return (
+    <li className="task">
+      <div className="left" onClick={handleClick}>
+        <span className="circle">A</span> <span> {name}</span>
+      </div>
+      <label className="custom-checkbox">
+        <input type="checkbox" checked={isChecked} onChange={handleChange} />
+        <span className="checkmark"></span>
+      </label>
+    </li>
+  );
+};
 
 export default Task;

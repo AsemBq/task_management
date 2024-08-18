@@ -1,13 +1,16 @@
-import Filter_IconSVG from './filter_list.svg';
-export default function FilterIcon(width, height) {
-    // console.log(setIsFiltered)
-    return (
+import './FilterIcon.css';
 
-        <img
-            src={Filter_IconSVG}
-            alt="Filter Icon"
-            width={width}
-            height={height}
-        ></img>
-    );
+import FilterIconSVG from './filterIcon.svg';
+
+export default function FilterIcon(width, height, onClick) {
+  return (
+    <img
+      className="filter-icon"
+      src={FilterIconSVG}
+      alt="Filter Icon"
+      width={width}
+      height={height}
+      onClick={onClick}
+    ></img>
+  );
 }
