@@ -3,7 +3,7 @@ import './TaskList.css';
 import { useUser } from '../../Context/UserContext';
 import FilterIcon from '../../Icon/FilterIcon/FilterIcon';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import LogOutIcon from '../LogOut/LogOut';
+import LogoutIcon from '../LogoutIcon/LogoutIcon.jsx';
 import Tasks from '../Tasks/Tasks';
 import AddTaskButton from '../AddTaskButton/AddTaskButton';
 
@@ -48,7 +48,7 @@ export default function TaskList2({ className }) {
     <div className={className}>
       <HeaderWithIcon
         text={`${username}'s Tasks`}
-        leftIcon={LogOutIcon('24px', '24px')}
+        leftIcon={LogoutIcon('24px', '24px')}
       />
       <div className="box-body">
         {tasks.length > 0 || (tasks.length == 0 && isFiltered) ? (
