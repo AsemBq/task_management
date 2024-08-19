@@ -9,8 +9,12 @@ import { useState } from 'react';
 import useTasks from '../../hooks/useTasks';
 import { useTaskContext } from '../../Context/TaskContext';
 
+import { useDispatch } from 'react-redux';
+import { addTask } from '../../Slices/taskSlice';
+
 export default function CreateTask({ className }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [taskError, setTaskError] = useState({
     name: null,
@@ -18,8 +22,6 @@ export default function CreateTask({ className }) {
   });
 
   const { createTask } = useTasks();
-
-  const { setAllTasks, tasks } = useTaskContext();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -43,8 +45,9 @@ export default function CreateTask({ className }) {
       priority: priorityText,
       user: JSON.parse(localStorage.getItem('user')).userId,
     });
+    console.log('new Task: ', newTask);
 
-    setAllTasks([...tasks, newTask]);
+    dispatch(addTask({ unshift: true, data: newTask }));
 
     navigate('/list');
   }
