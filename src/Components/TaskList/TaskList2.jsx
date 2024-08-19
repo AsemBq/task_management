@@ -7,38 +7,53 @@ import LogoutIcon from '../../Icon/LogoutIcon/LogoutIcon.jsx';
 import Tasks from '../Tasks/Tasks';
 import AddTaskButton from '../AddTaskButton/AddTaskButton';
 
-import { useTaskContext } from '../../Context/TaskContext.jsx';
+import {
+  useTasksSelector,
+  useTasksFetchedSelector,
+  toggleFetchtedTasks,
+} from '../../Slices/taskSlice.js';
+
+import { useDispatch } from 'react-redux';
+
+import { addTask } from '../../Slices/taskSlice.js';
 
 import { useEffect, useState } from 'react';
 import useTasks from '../../hooks/useTasks.jsx';
 import CheckIcon from '../../Icon/CheckIcon/CheckIcon.jsx';
 
 export default function TaskList2({ className }) {
+  const dispatch = useDispatch();
+
   const { username } = useUser();
 
-  const { tasks, setAllTasks } = useTaskContext();
+  const tasks = useTasksSelector();
+  const tasksFetched = useTasksFetchedSelector();
 
   const { getTasks } = useTasks();
 
   const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
+    function getUseId() {
+      return localStorage.getItem('user').userId;
+    }
+
     async function fetchTasks() {
       try {
-        const tasksData = await getTasks('1l2ig7vpgbndfwg');
-        if (isFiltered) {
-          setAllTasks(tasksData.filter((task) => task.done == true));
-        } else {
-          setAllTasks(tasksData);
+        if (!tasksFetched) {
+          const tasksData = await getTasks(getUseId());
+          tasksData.forEach((task) => {
+            dispatch(addTask({ unshift: false, data: task }));
+          });
+          dispatch(toggleFetchtedTasks({ fetched: true }));
         }
-        console.log(tasksData);
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     }
 
     fetchTasks();
-  }, [isFiltered]);
+  }, []);
 
   function hanldeFilterClick(e) {
     setIsFiltered(!isFiltered);
@@ -60,7 +75,11 @@ export default function TaskList2({ className }) {
           <></>
         )}
 
-        <Tasks tasks={tasks} />
+        <Tasks
+          tasks={
+            isFiltered ? tasks.filter((task) => task.done === true) : tasks
+          }
+        />
       </div>
       <div className="box-button">
         <AddTaskButton />
