@@ -9,8 +9,13 @@ import useTasks from '../../hooks/useTasks';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { editTask as editTaskAction } from '../../Slices/taskSlice';
+import { deleteTask as deleteTaskAction } from '../../Slices/taskSlice';
+
 export default function EditTask({ className }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [taskError, setTaskError] = useState({
     name: '',
@@ -73,11 +78,16 @@ export default function EditTask({ className }) {
       priority: priorityText,
     });
 
+    dispatch(
+      editTaskAction({ id: taskId, name: nameText, priority: priorityText })
+    );
+
     navigate('/list');
   };
 
   const handleDelete = async () => {
     await deleteTask(taskId);
+    dispatch(deleteTaskAction({ id: taskId }));
     navigate('/list');
   };
 
