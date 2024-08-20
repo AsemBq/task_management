@@ -1,25 +1,23 @@
 import './TaskList.css';
 
-import { useUser } from '../../Context/UserContext';
 import FilterIcon from '../../Icon/FilterIcon/FilterIcon';
+import CheckIcon from '../../Icon/CheckIcon/CheckIcon.jsx';
 import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
 import LogoutIcon from '../../Icon/LogoutIcon/LogoutIcon.jsx';
 import Tasks from '../Tasks/Tasks';
 import AddTaskButton from '../AddTaskButton/AddTaskButton';
 
+import { useUser } from '../../Context/UserContext';
 import {
   useTasksSelector,
+  usePageSelector,
   useTasksFetchedSelector,
+  useStatusSelector,
+  fetchTasks,
   toggleFetchtedTasks,
 } from '../../Slices/taskSlice.js';
-
 import { useDispatch } from 'react-redux';
-
-import { addTask } from '../../Slices/taskSlice.js';
-
 import { useEffect, useState } from 'react';
-import useTasks from '../../hooks/useTasks.jsx';
-import CheckIcon from '../../Icon/CheckIcon/CheckIcon.jsx';
 
 export default function TaskList2({ className }) {
   const dispatch = useDispatch();
@@ -27,32 +25,17 @@ export default function TaskList2({ className }) {
   const { username } = useUser();
 
   const tasks = useTasksSelector();
+  const status = useStatusSelector();
   const tasksFetched = useTasksFetchedSelector();
-
-  const { getTasks } = useTasks();
+  const page = usePageSelector();
 
   const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
-    function getUseId() {
-      return localStorage.getItem('user').userId;
+    if (!tasksFetched) {
+      dispatch(fetchTasks({ page, perPage: 3 }));
+      dispatch(toggleFetchtedTasks({ fetched: true }));
     }
-
-    async function fetchTasks() {
-      try {
-        if (!tasksFetched) {
-          const tasksData = await getTasks(getUseId());
-          tasksData.forEach((task) => {
-            dispatch(addTask({ unshift: false, data: task }));
-          });
-          dispatch(toggleFetchtedTasks({ fetched: true }));
-        }
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
-    }
-
-    fetchTasks();
   }, []);
 
   function hanldeFilterClick(e) {
@@ -79,6 +62,7 @@ export default function TaskList2({ className }) {
           tasks={
             isFiltered ? tasks.filter((task) => task.done === true) : tasks
           }
+          status={status}
         />
       </div>
       <div className="box-button">

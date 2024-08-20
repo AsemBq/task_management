@@ -1,9 +1,9 @@
 import pb from '../lib/Pocketbase';
 
 export default function useTasks() {
-  async function getTasks(userId, sort = '-created') {
+  async function getTasks(page, perPage, sort = '-created') {
     try {
-      const tasks = await pb.collection('tasks').getList(1, 9999, {
+      const tasks = await pb.collection('tasks').getList(page, perPage, {
         sort: sort,
       });
       return tasks.items;

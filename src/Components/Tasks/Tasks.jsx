@@ -3,10 +3,14 @@ import './Tasks.css';
 import Task from '../Task/Task.jsx';
 import EmptyTaskList from '../EmptyTaskList/EmptyTaskList.jsx';
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks, status }) => {
   console.log('tasks:', tasks);
 
-  if (tasks.length == 0) {
+  if (status == 'loading') {
+    return <h4>Loading</h4>;
+  }
+
+  if (status != 'loading' && tasks.length == 0) {
     return <EmptyTaskList />;
   }
 
