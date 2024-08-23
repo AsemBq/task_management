@@ -1,15 +1,14 @@
 import DeleteSVG from './Delete.svg';
 import './DeleteIcon.css';
-import axios from "axios";
 import Swal from 'sweetalert2'
 import {useNavigate} from "react-router-dom";
-import useTasks from "../../hooks/useTasks.jsx";
+import {useDispatch} from "react-redux";
+import {deleteTask} from "../../Components/redux/Tasks/tasksAction.js";
 
 
 export default function DeleteIcon(width, height,id) {
-  const token=JSON.parse(localStorage.getItem("token"));
   const navigate = useNavigate();
-  const { deleteTask } = useTasks();
+  const dispatch = useDispatch();
   const deleteHandler=(id)=>{
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -35,7 +34,7 @@ export default function DeleteIcon(width, height,id) {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteTask(id)
+        dispatch(deleteTask(id))
         swalWithBootstrapButtons.fire({
           title: "Deleted!",
           text: "Your Task has been deleted.",

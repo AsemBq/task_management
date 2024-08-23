@@ -5,7 +5,6 @@ import axios from "axios";
 
 const Task=({task})=>{
     const [Ischeck,setIscheck]=useState(task.done);
-    const token=JSON.parse(localStorage.getItem("token"));
     const {editTask}=useTasks()
     const ClickHandler=()=> {
         const updatedTask = editTask(task.id, {

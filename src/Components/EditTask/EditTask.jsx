@@ -6,11 +6,9 @@ import useTasks from "../../hooks/useTasks.jsx";
 import './EditTask.css';
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import axios from "axios";
 
 export default function EditTask({ className }) {
   const TaskId=useParams()
-  const token=JSON.parse(localStorage.getItem("token"));
   const [task,setTask]=useState({});
   const {getTaskById}=useTasks()
 

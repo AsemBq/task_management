@@ -8,7 +8,6 @@ const Pagination = ({taskPerPage,totalTasks,currentPage,setCurrentPage,loading})
     }
 
     let pageNumber = [];
-
     for(let i=1;i<=Math.ceil(totalTasks / taskPerPage);i++){
         pageNumber.push(i);
     }

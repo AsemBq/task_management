@@ -1,16 +1,13 @@
 import LogOut from './logout.svg';
 import './LogOut.css'
 import {NavLink} from "react-router-dom";
-import {useContext} from "react";
-import {UserContext} from "../../Wrapper/MainContext.jsx";
-import pb from "../lib/Pocketbase.js";
+import {useDispatch} from "react-redux";
+import {logoutUser} from "../redux/User/userAction.js";
+
 export default function LogOutIcon(width, height) {
-    const context=useContext(UserContext);
+    const dispatch = useDispatch();
     const LogOutHandler=()=>{
-        localStorage.removeItem('token')
-        localStorage.removeItem('UserName')
-        context.setIsUser(false)
-        pb.authStore.clear()
+        dispatch(logoutUser())
     }
     return (
         <NavLink to='/login'>
