@@ -9,18 +9,27 @@ const Pagination = ({
   loading,
   setCurrentPage,
 }) => {
+  console.log(
+    "totatl items: ",
+    totalItems,
+    "total pages: ",
+    totalPages,
+    " loading: ",
+    loading
+  );
+
   if (loading || totalItems == 0) {
     return <></>;
   }
 
-  const handleLeftArrowClick = (e) => {
+  const handleLeftArrowClick = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  const handleRightArrowClick = (e) => {
-    if (currentPage < totalPages - 1) {
+  const handleRightArrowClick = () => {
+    if (currentPage <= totalPages - 1) {
       setCurrentPage(currentPage + 1);
     }
   };

@@ -12,8 +12,6 @@ const Task = ({ listId, name, isDone }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const { editTask, getTaskById } = useTasks();
-
   const handleChange = async () => {
     isDone = !isDone;
     console.log("Task.jsx: ", isDone);

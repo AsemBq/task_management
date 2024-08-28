@@ -14,14 +14,14 @@ import {
   useTotalPagesSelector,
   useTotatlItemsSelector,
   useReFetchSelector,
-  // useTasksFetchedSelector,
   useStatusSelector,
   fetchTasksThunk,
   toggleReFetch,
+  setCurrentPage,
 } from "../../Slices/taskSlice.js";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-// import Pagination from "../Pagination/Pagination.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
 
 export default function TaskList2({ className }) {
   const dispatch = useDispatch();
@@ -30,6 +30,9 @@ export default function TaskList2({ className }) {
   const status = useStatusSelector();
   const reFetch = useReFetchSelector();
   const currentPage = useCurrentPageSelector();
+  const totalPages = useTotalPagesSelector();
+  const totalItems = useTotatlItemsSelector();
+  console.log(("tp: ", totalPages, " ti: ", totalItems));
 
   const { username } = useUser();
   const [isFiltered, setIsFiltered] = useState(false);
@@ -65,15 +68,13 @@ export default function TaskList2({ className }) {
           status={status}
         />
 
-        {/* <Pagination
+        <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           totalItems={totalItems}
-          setCurrentPage={(number) =>
-            dispatch(setCurrentPageNumber({ number }))
-          }
-          loading={status === "loading"}
-        /> */}
+          setCurrentPage={(number) => dispatch(setCurrentPage({ number }))}
+          loading={status === "pending"}
+        />
       </div>
       <div className='box-button'>
         <AddTaskButton />

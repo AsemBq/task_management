@@ -7,6 +7,7 @@ const initialState = {
   reFetch: true,
   currentPage: 1,
   totalPages: 1,
+  totalItems: 0,
   status: "idle", // 'idle', 'pending , 'loading', 'error'
   error: null,
   reducerType: null,
@@ -17,6 +18,8 @@ const { getTasks, createTask, editTask, deleteTask, toggleDone } = useTasks();
 export const fetchTasksThunk = createAsyncThunk(
   "task/fetchTasks",
   async ({ page, perPage }) => {
+    console.log("paee: ", page, " perpage: ", perPage);
+
     return await getTasks(page, perPage);
   }
 );
@@ -57,6 +60,10 @@ export const taskSlice = createSlice({
     toggleReFetch(state, action) {
       state.reFetch = action.payload;
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload.number;
+      state.reFetch = true;
+    },
   },
   extraReducers(builder) {
     builder
@@ -67,9 +74,11 @@ export const taskSlice = createSlice({
       })
       .addCase(fetchTasksThunk.fulfilled, (state, action) => {
         console.log("fullfilled");
+        state.status = "fullfilled";
         state.reducerType = "fetchTasks";
         state.currentPage = action.payload.currentPage;
         state.totalPages = action.payload.totalPages;
+        state.totalItems = action.payload.totalItems;
         state.tasks = action.payload.items;
       })
       .addCase(fetchTasksThunk.rejected, (state, action) => {
@@ -173,6 +182,6 @@ export const useTotatlItemsSelector = () => {
   return useSelector(selectTotalItems);
 };
 
-export const { toggleReFetch } = taskSlice.actions;
+export const { toggleReFetch, setCurrentPage } = taskSlice.actions;
 
 export default taskSlice.reducer;
