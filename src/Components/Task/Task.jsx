@@ -1,23 +1,25 @@
-import './Task.css';
+import "./Task.css";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import { useState } from 'react';
-import useTasks from '../../hooks/useTasks';
+import { useState } from "react";
+import useTasks from "../../hooks/useTasks";
 
-import { useDispatch } from 'react-redux';
-import { toggleDone } from '../../Slices/taskSlice';
+import { useDispatch } from "react-redux";
+import { toggleDoneThunk, toggleReFetch } from "../../Slices/taskSlice";
 
 const Task = ({ listId, name, isDone }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { editTask, getTaskById } = useTasks();
+  // const { editTask, getTaskById } = useTasks();
 
   const handleChange = async () => {
     isDone = !isDone;
-    await editTask(listId, { ...getTaskById(listId), done: isDone });
-    dispatch(toggleDone({ id: listId, done: isDone }));
+    console.log("Task.jsx: ", isDone);
+    dispatch(toggleDoneThunk({ taskId: listId, done: isDone })).then(() =>
+      dispatch(toggleReFetch(true))
+    );
   };
 
   const handleClick = () => {
@@ -25,13 +27,13 @@ const Task = ({ listId, name, isDone }) => {
   };
 
   return (
-    <li className="task">
-      <div className="left" onClick={handleClick}>
-        <span className="circle">A</span> <span> {name}</span>
+    <li className='task'>
+      <div className='left' onClick={handleClick}>
+        <span className='circle'>A</span> <span> {name}</span>
       </div>
-      <label className="custom-checkbox">
-        <input type="checkbox" checked={isDone} onChange={handleChange} />
-        <span className="checkmark"></span>
+      <label className='custom-checkbox'>
+        <input type='checkbox' checked={isDone} onChange={handleChange} />
+        <span className='checkmark'></span>
       </label>
     </li>
   );

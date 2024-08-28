@@ -1,25 +1,30 @@
-import './EditTask.css';
+import "./EditTask.css";
 
-import CustomForm from '../CustomForm/CustomForm';
-import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import DeleteIcon from '../../Icon/DeleteIcon/DeleteIcon';
-import ReturnIcon from '../../Icon/ReturnIcon/ReturnIcon';
-import useTasks from '../../hooks/useTasks';
+import CustomForm from "../CustomForm/CustomForm";
+import HeaderWithIcon from "../HeaderWithIcon/HeaderWithIcon";
+import DeleteIcon from "../../Icon/DeleteIcon/DeleteIcon";
+import ReturnIcon from "../../Icon/ReturnIcon/ReturnIcon";
+import useTasks from "../../hooks/useTasks";
 
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-import { useDispatch } from 'react-redux';
-import { editTask as editTaskAction } from '../../Slices/taskSlice';
-import { deleteTask as deleteTaskAction } from '../../Slices/taskSlice';
+import { useDispatch } from "react-redux";
+import {
+  deleteTaskThunk,
+  editTaskThunk,
+  toggleReFetch,
+} from "../../Slices/taskSlice";
+// import { editTask as editTaskAction } from "../../Slices/taskSlice";
+// import { deleteTask as deleteTaskAction } from '../../Slices/taskSlice';
 
 export default function EditTask({ className }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [taskError, setTaskError] = useState({
-    name: '',
-    priority: '',
+    name: "",
+    priority: "",
   });
 
   const [task, setTask] = useState({
@@ -30,11 +35,11 @@ export default function EditTask({ className }) {
   const { getTaskById, editTask, deleteTask } = useTasks();
 
   const [searchParams] = useSearchParams();
-  let taskId = searchParams.get('id') || null; // Default to 1 if not defined
+  let taskId = searchParams.get("id") || null; // Default to 1 if not defined
 
   useEffect(() => {
     if (!taskId) {
-      navigate('/list');
+      navigate("/list");
     }
   }, [taskId]);
 
@@ -46,10 +51,10 @@ export default function EditTask({ className }) {
         }
         const tasksData = await getTaskById(taskId);
         setTask(tasksData);
-        taskId = '';
-        console.log('task data: ', tasksData);
+        taskId = "";
+        console.log("task data: ", tasksData);
       } catch (error) {
-        console.error('Error fetching task:', error);
+        console.error("Error fetching task:", error);
       }
     }
     getTask();
@@ -59,8 +64,8 @@ export default function EditTask({ className }) {
     e.preventDefault();
 
     const formData = Object.fromEntries(new FormData(e.target).entries());
-    const nameText = formData['name'];
-    const priorityText = formData['priority'];
+    const nameText = formData["name"];
+    const priorityText = formData["priority"];
 
     const errors = {
       name: !nameText ? "Name field can't be empty" : null,
@@ -78,17 +83,20 @@ export default function EditTask({ className }) {
       priority: priorityText,
     });
 
-    dispatch(
-      editTaskAction({ id: taskId, name: nameText, priority: priorityText })
-    );
+    // dispatch(
+    // editTaskAction({ id: taskId, name: nameText, priority: priorityText })
+    // );
 
-    navigate('/list');
+    dispatch(editTaskThunk(taskId, { name: nameText, priority: priorityText }));
+    dispatch(toggleReFetch(true));
+
+    navigate("/list");
   };
 
   const handleDelete = async () => {
-    await deleteTask(taskId);
-    dispatch(deleteTaskAction({ id: taskId }));
-    navigate('/list');
+    dispatch(deleteTaskThunk(taskId));
+    dispatch(toggleReFetch(true));
+    navigate("/list");
   };
 
   const config = {
@@ -103,31 +111,31 @@ export default function EditTask({ className }) {
       error: taskError.name,
       parentDiv: {
         tag: {
-          className: '_text-input__form-group',
+          className: "_text-input__form-group",
         },
       },
       label: {
         tag: {
-          className: '_text-input__label',
-          name: 'Name',
-          placeholder: 'PlaceHolder',
-          htmlFor: 'name',
+          className: "_text-input__label",
+          name: "Name",
+          placeholder: "PlaceHolder",
+          htmlFor: "name",
         },
-        text: 'name',
+        text: "name",
       },
       input: {
         tag: {
-          className: '_text-input__input',
-          id: 'name',
-          name: 'name',
-          autoComplete: 'name',
-          type: 'text',
+          className: "_text-input__input",
+          id: "name",
+          name: "name",
+          autoComplete: "name",
+          type: "text",
           defaultValue: task.name,
         },
       },
       icon: {
         tag: {
-          className: '_text-input__icon',
+          className: "_text-input__icon",
           style: {},
         },
         icon: null,
@@ -137,30 +145,30 @@ export default function EditTask({ className }) {
       error: taskError.priority,
       parentDiv: {
         tag: {
-          className: '_text-input__form-group',
+          className: "_text-input__form-group",
         },
       },
       label: {
         tag: {
-          className: '_text-input__label',
-          name: 'priority',
-          placeholder: 'PlaceHolder',
-          htmlFor: 'priority',
+          className: "_text-input__label",
+          name: "priority",
+          placeholder: "PlaceHolder",
+          htmlFor: "priority",
         },
-        text: 'priority',
+        text: "priority",
       },
       input: {
         tag: {
-          className: '_text-input__input',
-          id: 'priority',
-          name: 'priority',
-          type: 'text',
+          className: "_text-input__input",
+          id: "priority",
+          name: "priority",
+          type: "text",
           defaultValue: task.priority,
         },
       },
       icon: {
         tag: {
-          className: '_text-input__icon',
+          className: "_text-input__icon",
           style: {},
         },
         icon: null,
@@ -169,14 +177,14 @@ export default function EditTask({ className }) {
     button: {
       button: {
         tag: {
-          className: '_submit-btn',
+          className: "_submit-btn",
         },
         text: {
-          text: 'Save',
+          text: "Save",
         },
       },
     },
-    from: 'Edit',
+    from: "Edit",
     task: task,
   };
 
@@ -184,8 +192,8 @@ export default function EditTask({ className }) {
     <div className={className}>
       <HeaderWithIcon
         text={task.name}
-        leftIcon={DeleteIcon('24px', '24px', handleDelete)}
-        rightIcon={ReturnIcon('10px', '15px')}
+        leftIcon={DeleteIcon("24px", "24px", handleDelete)}
+        rightIcon={ReturnIcon("10px", "15px")}
       ></HeaderWithIcon>
       <CustomForm config={config} />
     </div>

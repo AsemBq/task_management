@@ -1,16 +1,20 @@
-import './CreateTask.css';
+import "./CreateTask.css";
 
-import { useNavigate } from 'react-router-dom';
-import CustomForm from '../CustomForm/CustomForm';
-import HeaderWithIcon from '../HeaderWithIcon/HeaderWithIcon';
-import ReturnIcon from '../../Icon/ReturnIcon/ReturnIcon';
+import { useNavigate } from "react-router-dom";
+import CustomForm from "../CustomForm/CustomForm";
+import HeaderWithIcon from "../HeaderWithIcon/HeaderWithIcon";
+import ReturnIcon from "../../Icon/ReturnIcon/ReturnIcon";
 
-import { useState } from 'react';
-import useTasks from '../../hooks/useTasks';
-import { useTaskContext } from '../../Context/TaskContext';
+import { useState } from "react";
+import useTasks from "../../hooks/useTasks";
+import { useTaskContext } from "../../Context/TaskContext";
 
-import { useDispatch } from 'react-redux';
-import { addTask } from '../../Slices/taskSlice';
+import { useDispatch } from "react-redux";
+import {
+  addTaskThunk,
+  deleteTaskThunk,
+  toggleReFetch,
+} from "../../Slices/taskSlice";
 
 export default function CreateTask({ className }) {
   const navigate = useNavigate();
@@ -26,8 +30,8 @@ export default function CreateTask({ className }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target).entries());
-    const nameText = formData['name'];
-    const priorityText = formData['priority'];
+    const nameText = formData["name"];
+    const priorityText = formData["priority"];
 
     const errors = {
       name: !nameText ? "Name field can't be empty" : null,
@@ -40,16 +44,26 @@ export default function CreateTask({ className }) {
       return;
     }
 
-    const newTask = await createTask({
-      name: nameText,
-      priority: priorityText,
-      user: JSON.parse(localStorage.getItem('user')).userId,
-    });
-    console.log('new Task: ', newTask);
+    // const newTask = await createTask({
+    //   name: nameText,
+    //   priority: priorityText,
+    //   user: JSON.parse(localStorage.getItem("user")).userId,
+    // });
+    // console.log("new Task: ", newTask);
 
-    dispatch(addTask({ unshift: true, data: newTask }));
+    // dispatch(addTask({ unshift: true, data: newTask }));
 
-    navigate('/list');
+    dispatch(
+      addTaskThunk({
+        name: nameText,
+        priority: priorityText,
+        user: JSON.parse(localStorage.getItem("user")).userId,
+      })
+    );
+
+    dispatch(toggleReFetch(true));
+
+    navigate("/list");
   }
 
   const config = {
@@ -66,30 +80,30 @@ export default function CreateTask({ className }) {
       error: taskError.name,
       parentDiv: {
         tag: {
-          className: '_text-input__form-group',
+          className: "_text-input__form-group",
         },
       },
       label: {
         tag: {
-          className: '_text-input__label',
-          name: 'name',
-          placeholder: 'PlaceHolder',
-          htmlFor: 'name',
+          className: "_text-input__label",
+          name: "name",
+          placeholder: "PlaceHolder",
+          htmlFor: "name",
         },
-        text: 'Name',
+        text: "Name",
       },
       input: {
         tag: {
-          className: '_text-input__input',
-          id: 'name',
-          name: 'name',
-          autoComplete: 'name',
-          type: 'text',
+          className: "_text-input__input",
+          id: "name",
+          name: "name",
+          autoComplete: "name",
+          type: "text",
         },
       },
       icon: {
         tag: {
-          className: '_text-input__icon',
+          className: "_text-input__icon",
           style: {},
         },
         icon: null,
@@ -99,30 +113,30 @@ export default function CreateTask({ className }) {
       error: taskError.priority,
       parentDiv: {
         tag: {
-          className: '_text-input__form-group',
+          className: "_text-input__form-group",
         },
       },
       label: {
         tag: {
-          className: '_text-input__label',
-          name: 'priority',
-          placeholder: 'PlaceHolder',
-          htmlFor: 'priority',
+          className: "_text-input__label",
+          name: "priority",
+          placeholder: "PlaceHolder",
+          htmlFor: "priority",
         },
-        text: 'Priority',
+        text: "Priority",
       },
       input: {
         tag: {
-          className: '_text-input__input',
-          id: 'priority',
-          name: 'priority',
-          autoComplete: 'priority',
-          type: 'text',
+          className: "_text-input__input",
+          id: "priority",
+          name: "priority",
+          autoComplete: "priority",
+          type: "text",
         },
       },
       icon: {
         tag: {
-          className: '_text-input__icon',
+          className: "_text-input__icon",
           style: {},
         },
         icon: null,
@@ -131,10 +145,10 @@ export default function CreateTask({ className }) {
     button: {
       button: {
         tag: {
-          className: '_submit-btn',
+          className: "_submit-btn",
         },
         text: {
-          text: 'Create',
+          text: "Create",
         },
       },
     },
@@ -143,7 +157,7 @@ export default function CreateTask({ className }) {
   return (
     <div className={className}>
       <HeaderWithIcon
-        text="Create Task"
+        text='Create Task'
         rightIcon={ReturnIcon()}
       ></HeaderWithIcon>
       <CustomForm config={config} />
